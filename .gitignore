@@ -1,0 +1,6 @@
+*.vs
+*Debug
+
+/Class_Work/01.Intro/.vs
+/Class_Work/01.Intro/01.Intro/bin/Debug
+/Class_Work/01.Intro/01.Intro/obj/Debug
