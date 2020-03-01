@@ -20,40 +20,45 @@ namespace _02.Array
     {
         static void Main(string[] args)
         {
+            #region
             int P;
             int K = 0;
             int account_bank = 1000;
             int add_prosent;
-            Console.WriteLine("Enter P : ");
+            Console.WriteLine("Enter % : ");
             P = int.Parse(Console.ReadLine());
 
             //Console.WriteLine(P);
 
             add_prosent = account_bank * P / 100;
 
-            for(int i=0; i < 12; i++)
+            for (int i = 0; i < 13; i++)
             {
                 account_bank += add_prosent;
-               
-                    if (account_bank >= 1500)
-                    {
-                        K = i + 1;
-                        //Console.WriteLine("In months ->> " + i);
-                        //break;
-                    }                 
-               
+                if (account_bank >= 1200)
+                {
+                    K = i;
+                    Console.WriteLine(" Months    ->> " + K);
+                    Console.WriteLine(" You have  ->> " + account_bank);
+                    break;
+                }
             }
-
-            Console.WriteLine("In months ->> " + K);
-            Console.WriteLine("You have  ->> " + account_bank);
+            for (int i = 0; i < 12; i++)
+            {
+                account_bank += add_prosent;
+                K = i + 1;
+            }
+            Console.WriteLine("All months ->> " + K);
+            Console.WriteLine("All money  ->> " + account_bank);
+            #endregion
+            /*
+            * Даний одновимірний цілочисельний масив, дані для якого вводяться користувачем. 
+            * Перетворити даний масив таким чином, щоб спочатку йшли всі додатні елементи, 
+            * а потім від'ємні без зміни основного порядку. 
+            */
         }
+
     }
-
-
 }
 
-/*
- * Даний одновимірний цілочисельний масив, дані для якого вводяться користувачем. 
- * Перетворити даний масив таким чином, щоб спочатку йшли всі додатні елементи, 
- * а потім від'ємні без зміни основного порядку. 
- */
+
