@@ -46,6 +46,22 @@ namespace _02.home_work_03._05._20_
     {
         static void Main(string[] args)
         {
+            var house = new House();
+            var team = new Team();
+            var teamlead = new TeamLeader();
+
+            team.Build_house(house);
+            //teamlead.Chack_work(house);
+            team.Build_house(house);
+            team.Build_house(house);
+            team.Build_house(house);
+            team.Build_house(house);
+            //teamlead.Chack_work(house);
+            team.Build_house(house);
+            team.Build_house(house);
+            team.Build_house(house);
+            //teamlead.Chack_work(house);
+
         }
     }
 }

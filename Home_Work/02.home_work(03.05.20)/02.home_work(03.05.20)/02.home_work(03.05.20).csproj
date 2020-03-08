@@ -46,6 +46,8 @@
     <Compile Include="Basemetn.cs" />
     <Compile Include="Door.cs" />
     <Compile Include="House.cs" />
+    <Compile Include="IPart.cs" />
+    <Compile Include="IWorker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roof.cs" />

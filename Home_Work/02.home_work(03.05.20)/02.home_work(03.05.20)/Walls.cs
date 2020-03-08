@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace _02.home_work_03._05._20_
 {
-    class Walls
-    {
+    class Walls : IPart
+    {        
+        public string Add_Part()
+        {            
+            return "Walls";
+        }
     }
 }

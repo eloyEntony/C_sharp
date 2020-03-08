@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace _02.home_work_03._05._20_
 {
-    class Window
+    class Window : IPart
     {
+        public string Add_Part()
+        {
+            return "Window";
+        }
     }
 }

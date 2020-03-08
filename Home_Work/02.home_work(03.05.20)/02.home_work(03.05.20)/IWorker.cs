@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace _02.home_work_03._05._20_
 {
-    class Basemetn : IPart
+    interface IWorker
     {
-        public string Add_Part()
-        {
-            return "Basemetn";
-        }
+        void Build(House house);
     }
 }
