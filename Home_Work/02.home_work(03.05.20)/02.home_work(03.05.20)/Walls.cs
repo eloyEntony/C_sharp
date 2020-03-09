@@ -12,5 +12,10 @@ namespace _02.home_work_03._05._20_
         {            
             return "Walls";
         }
+
+        public uint Count_part()
+        {
+            return 4;
+        }
     }
 }

@@ -46,21 +46,50 @@ namespace _02.home_work_03._05._20_
     {
         static void Main(string[] args)
         {
+            uint component;
             var house = new House();
             var team = new Team();
             var teamlead = new TeamLeader();
 
-            team.Build_house(house);
-            //teamlead.Chack_work(house);
-            team.Build_house(house);
-            team.Build_house(house);
-            team.Build_house(house);
-            team.Build_house(house);
-            //teamlead.Chack_work(house);
-            team.Build_house(house);
-            team.Build_house(house);
-            team.Build_house(house);
-            //teamlead.Chack_work(house);
+            //team.Build_house(house);
+            ////teamlead.Chack_work(house);
+            //team.Build_house(house);
+            //team.Build_house(house);
+            //team.Build_house(house);
+            //team.Build_house(house);
+            ////teamlead.Chack_work(house);
+            //team.Build_house(house);
+            //team.Build_house(house);
+            //team.Build_house(house);
+            ////teamlead.Chack_work(house);
+            ///
+
+            var basement = new Basemetn();
+            component = basement.Count_part();
+            house.Add_part(component);
+            house.Show_part_counter();
+
+            var walls = new Walls();
+            component = walls.Count_part();
+            house.Add_part(component);
+            house.Show_part_counter();
+
+            var window = new Window();
+            component = window.Count_part();
+            house.Add_part(component);
+            house.Show_part_counter();
+
+            var door = new Door();
+            component = door.Count_part();
+            house.Add_part(component);
+            house.Show_part_counter();
+
+            var roof = new Roof();
+            component = roof.Count_part();
+            house.Add_part(component);
+            house.Show_part_counter();
+
+
 
         }
     }
