@@ -31,7 +31,9 @@ namespace _10.Partial_class
     {
         static void Main(string[] args)
         {
-
+            var factory = new Factory("My FACTORY", 100, 200, 300, 10, 2);
+            factory.Show_factory();
+            factory.Show_depart();
         }
     }
 }

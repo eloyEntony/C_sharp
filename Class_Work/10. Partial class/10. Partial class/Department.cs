@@ -8,12 +8,21 @@ namespace _10.Partial_class
 {
     class Department
     {
-        readonly string Name;
+        string Name = "BOB";
         Employee[] employees;
 
         public Department(string name)
         {
             this.Name = name;
+        }
+
+        public void Setname(string name)
+        {
+            this.Name = name;
+        }
+        public void Show_depart()
+        {
+            Console.WriteLine($" Depart name : {this.Name}");
         }
 
         public string ReturnString()

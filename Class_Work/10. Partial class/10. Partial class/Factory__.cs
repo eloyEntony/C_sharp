@@ -8,35 +8,71 @@ namespace _10.Partial_class
 {
     partial class Factory
     {
-        void Show_name()
-        {
-            Console.WriteLine($"Name : {this.Name}");
-        }
+        Product[] products;
 
-        public Product[] products;
-        public string ReturnString()
+        public Factory(string name, int avg_salary, int total_salary, int gdp, int emp_count, int count_depart)
         {
+            this.Name = name;
+            this.SetAvgSalary(avg_salary);
+            this.SetTotalSalary(total_salary);
+            this.SetGDP(gdp);
+            this.SetEmpCount(emp_count);
+
+            this.departments = new Department[count_depart];
+        }
+        
+        public string ReturnString(){
             return this.Name;
         }
 
-        partial void SetAvgSalary()
-        {
-
+        partial void SetAvgSalary(int avg){
+            this.Avarege_Salary = avg;
+        }
+        partial void SetTotalSalary(int total){
+            this.Total_Salary = total;
+        }
+        partial void SetGDP(int gdp){
+            this.GDP = gdp;
+        }
+        partial void SetEmpCount(int empcount){
+            this.EmpCount = empcount;
         }
 
-        partial void SetTotalSalary()
-        {
-
+        public int Get_avg_salary(){
+            return this.Avarege_Salary;
+        }
+        public int Get_Total_Salary(){
+            return this.Total_Salary;
+        }
+        public int Get_GDP(){
+            return this.GDP;
+        }
+        public int Get_Emp_Count(){
+            return this.EmpCount;
         }
 
-        partial void SetGDP()
+        public void Show_factory()
         {
-
+            Console.WriteLine($" Name         : {this.Name}\n " +
+                              $"Avg salary   : {this.Avarege_Salary}\n " +
+                              $"Total salary : {this.Total_Salary}\n " +
+                              $"GDP          : {this.GDP}\n " +
+                              $"Emp couter   : {this.EmpCount}\n");
         }
 
-        partial void SetEmpCount()
+        public void Show_depart()
         {
+            foreach (var item in departments)
+            {
+               // this.Show_depart();
+            }
 
+            for(int i=0;i <  departments.Length; i++)
+            {
+                //this.departments[i].Show_depart();
+            }
+            
         }
+
     }
 }
