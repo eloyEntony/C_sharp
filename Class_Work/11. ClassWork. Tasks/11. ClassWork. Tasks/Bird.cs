@@ -10,7 +10,7 @@ namespace _11.ClassWork.Tasks
     {
         public void Fly()
         {
-            Console.WriteLine($"Bird : Fly");
+            Console.WriteLine($" Bird do >>> Fly");
         }
 
         public override void Voise()

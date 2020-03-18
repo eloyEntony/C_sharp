@@ -8,7 +8,6 @@ namespace _11.ClassWork.Tasks
 {
     interface IRunning
     {
-        //int Speed_Run { get; set; }
         void Run();
     }
 }

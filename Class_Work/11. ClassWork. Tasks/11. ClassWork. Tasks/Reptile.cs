@@ -10,7 +10,7 @@ namespace _11.ClassWork.Tasks
     {
         public void Crawling()
         {
-            Console.WriteLine($"Repril : Crawl");
+            Console.WriteLine($" Repril do >>> Crawl");
         }
 
         public override void Voise()

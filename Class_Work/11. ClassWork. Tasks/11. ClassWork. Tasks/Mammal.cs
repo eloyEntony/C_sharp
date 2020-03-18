@@ -10,7 +10,7 @@ namespace _11.ClassWork.Tasks
     {
         public void Run()
         {
-            Console.WriteLine($"Mammal : Run");
+            Console.WriteLine($" Mammal do >>> Run");
         }
 
         public override void Voise()

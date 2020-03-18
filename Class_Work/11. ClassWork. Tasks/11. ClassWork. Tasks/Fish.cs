@@ -10,7 +10,7 @@ namespace _11.ClassWork.Tasks
     {
         public void Float()
         {
-            Console.WriteLine($"Fish : Floating");
+            Console.WriteLine($" Fish do >>> Floating");
         }
 
         public override void Voise()

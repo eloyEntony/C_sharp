@@ -9,7 +9,7 @@ namespace _11.ClassWork.Tasks
     abstract class Creature
     {
         public void Live() {
-            Console.WriteLine("\n====================================\nLIVE");
+            Console.WriteLine("====================================\nLIVE");
         }
     }
 }

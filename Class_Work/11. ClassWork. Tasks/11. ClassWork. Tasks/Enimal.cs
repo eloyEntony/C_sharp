@@ -16,6 +16,6 @@ namespace _11.ClassWork.Tasks
 
         virtual public void Voise() {   }
 
-
+        
     }
 }
