@@ -19,6 +19,12 @@ namespace _10.Partial_class
             this.SetEmpCount(emp_count);
 
             this.departments = new Department[count_depart];
+
+            for (int i = 0; i < count_depart; i++)
+            {
+                departments[i] = new Department("Department " + i); 
+            }
+
         }
         
         public string ReturnString(){
@@ -62,17 +68,12 @@ namespace _10.Partial_class
 
         public void Show_depart()
         {
-            foreach (var item in departments)
+            
+            foreach (Department item in departments)
             {
-               // this.Show_depart();
-            }
-
-            for(int i=0;i <  departments.Length; i++)
-            {
-                //this.departments[i].Show_depart();
-            }
+               item.Show_depart();
+            }      
             
         }
-
     }
 }
