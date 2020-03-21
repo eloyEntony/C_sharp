@@ -28,15 +28,27 @@ namespace _04.home_work_03._19._20_
 {
     class Program
     {
+
+        static Game game;
+
         static void Main(string[] args)
         {
-            //var mycar = new Sport_Car();
-            //mycar.Show_car();
-            //mycar.Increase_speed();
-            //mycar.Show_car();
+            game = new Game();
 
-            var game = new Game();
+            game.Finish_event += Winner;
+
             game.Start_game();
+
+            game.Show_all_car();
+
+            game.Go();
         }
+
+        static private void Winner()
+        {
+            game.End();
+        }
+
+        
     }
 }
