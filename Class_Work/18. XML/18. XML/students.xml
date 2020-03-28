@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--This is comment-->
+<Students>
+  <Student Id="1">
+    <Name>Bob</Name>
+    <Mark>10</Mark>
+  </Student>
+  <Student Id="2">
+    <Name>Jack</Name>
+    <Mark>10</Mark>
+  </Student>
+</Students>

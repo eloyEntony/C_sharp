@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--This is comment-->
+<Contacts>
+  <Contact ID="1">
+    <Name>Bob</Name>
+    <Numder>000-000-00-00</Numder>
+    <Adress>Kuiv</Adress>
+  </Contact>
+  <Contact ID="2">
+    <Name>Bill</Name>
+    <Numder>111-111-11-11</Numder>
+    <Adress>Lviv</Adress>
+  </Contact>
+  <Contact ID="3">
+    <Name>Jack</Name>
+    <Numder>222-222-22-22</Numder>
+    <Adress>Odesa</Adress>
+  </Contact>
+  <Contact ID="4">
+    <Name>Maks</Name>
+    <Numder>333-333-33-33</Numder>
+    <Adress>Rivne</Adress>
+  </Contact>
+  <Contact ID="5">
+    <Name>Stive</Name>
+    <Numder>444-444-44-44</Numder>
+    <Adress>Lusk</Adress>
+  </Contact>
+</Contacts>
