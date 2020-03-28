@@ -22,8 +22,8 @@
     <Adress>Rivne</Adress>
   </Contact>
   <Contact ID="5">
-    <Name>Stive</Name>
+    <Name>Maks</Name>
     <Numder>444-444-44-44</Numder>
     <Adress>Lusk</Adress>
-  </Contact>
+  </Contact> 
 </Contacts>

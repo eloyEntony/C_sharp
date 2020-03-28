@@ -144,12 +144,8 @@ namespace _18.XML
                 }
                 contacts.Add(contact);
             }
-
-
             foreach (Contacts item in contacts)
                 Console.WriteLine($" Name   -> {item.Name}\n Number -> {item.Numder}\n Adress -> {item.Adress}\n");
-
-
         }
 
         public void Sherch_by_name()
@@ -161,28 +157,19 @@ namespace _18.XML
             xDoc.Load(path);
             XmlElement xRoot = xDoc.DocumentElement;
 
+            int id;
+            XElement root = XElement.Load(path);
+            IEnumerable<XElement> contact =
+                from el in root.Elements("Contact")
+                where (string)el.Element("Name") == temp
+                select el;            
 
-            foreach (XmlNode item in xRoot.ChildNodes)
+            foreach (XElement el in contact)
             {
-                Console.WriteLine("\n Found Child:");
-
-                foreach (XmlNode child in item.ChildNodes)
-                {
-                    if(child.Name == "Name")
-                    {
-                        Console.WriteLine(child.Name + ": " + child.InnerText);
-                        if (child is XmlText text)
-                        {
-                            // Если зависимый элемент текст,
-                            // то выводим его через тире.
-                            Console.Write($"- {text.InnerText}");
-                        }
-                    }
-                    
-                }
-
-            }
-            
+                //Console.WriteLine((string)el.Attribute("ID"));
+                 id = (int)el.Attribute("ID");
+                Console.WriteLine(el);   
+            } 
 
         }
     }
