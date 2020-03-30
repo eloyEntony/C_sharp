@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Users>
+  <User>
+    <Name>Bob</Name>
+    <Login>Bob</Login>
+    <Pass>1234</Pass>
+    <Date_create>15.03.15</Date_create>
+  </User>
+  <User>
+    <Name>Jack</Name>
+    <Login>Jack</Login>
+    <Pass>1234</Pass>
+    <Date_create>02.04.18</Date_create>
+  </User>
+  <User>
+    <Name>Mack</Name>
+    <Login>Mack</Login>
+    <Pass>1234</Pass>
+    <Date_create>30.03.20</Date_create>
+  </User>
+  <User>
+    <Name>Entony</Name>
+    <Login>Entony</Login>
+    <Pass>1230</Pass>
+    <Date_create>30.03.20</Date_create>
+  </User>
+</Users>
