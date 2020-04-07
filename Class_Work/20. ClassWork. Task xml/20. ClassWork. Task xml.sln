@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1062
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "20. ClassWork. Task xml", "20. ClassWork. Task xml\20. ClassWork. Task xml.csproj", "{007783AE-5D5B-4531-BA88-C538F5AD143B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{007783AE-5D5B-4531-BA88-C538F5AD143B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{007783AE-5D5B-4531-BA88-C538F5AD143B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{007783AE-5D5B-4531-BA88-C538F5AD143B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{007783AE-5D5B-4531-BA88-C538F5AD143B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0DE7CDC1-D9F8-4AC3-96FB-9734A9BE79DF}
+	EndGlobalSection
+EndGlobal
