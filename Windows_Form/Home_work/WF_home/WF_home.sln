@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1062
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WF_home", "WF_home\WF_home.csproj", "{5AEA9439-9E3C-438B-8FF7-FDA4AB8681E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task_2", "Task_2\Task_2.csproj", "{8C710FF6-0375-471D-9875-D74C15EE6540}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz_homework", "Quiz_homework\Quiz_homework.csproj", "{CDA43227-757F-4FF0-9A15-3FEA2E90BF3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8C710FF6-0375-471D-9875-D74C15EE6540}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C710FF6-0375-471D-9875-D74C15EE6540}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C710FF6-0375-471D-9875-D74C15EE6540}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDA43227-757F-4FF0-9A15-3FEA2E90BF3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA43227-757F-4FF0-9A15-3FEA2E90BF3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDA43227-757F-4FF0-9A15-3FEA2E90BF3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDA43227-757F-4FF0-9A15-3FEA2E90BF3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
