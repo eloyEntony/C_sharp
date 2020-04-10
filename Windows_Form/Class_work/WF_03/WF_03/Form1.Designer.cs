@@ -43,12 +43,17 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.btnJson = new System.Windows.Forms.Button();
+            this.btnCleanEvent = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel1.BackColor = System.Drawing.SystemColors.InfoText;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnCleanEvent);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
@@ -66,6 +71,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label4.Location = new System.Drawing.Point(15, 142);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 13);
@@ -75,6 +81,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label3.Location = new System.Drawing.Point(15, 99);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 13);
@@ -84,6 +91,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label2.Location = new System.Drawing.Point(15, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 13);
@@ -93,7 +101,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 13);
+            this.label1.BackColor = System.Drawing.SystemColors.MenuText;
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(15, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 5;
@@ -101,14 +111,15 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(96, 225);
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAdd.Location = new System.Drawing.Point(18, 203);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Size = new System.Drawing.Size(88, 23);
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            this.btnAdd.Leave += new System.EventHandler(this.btnAdd_Leave);
             // 
             // priorityBox
             // 
@@ -129,11 +140,11 @@
             // 
             this.dateTime.Location = new System.Drawing.Point(15, 115);
             this.dateTime.MaxDate = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
-            this.dateTime.MinDate = new System.DateTime(1753, 1, 9, 0, 0, 0, 0);
+            this.dateTime.MinDate = new System.DateTime(2020, 4, 10, 0, 0, 0, 0);
             this.dateTime.Name = "dateTime";
             this.dateTime.Size = new System.Drawing.Size(231, 20);
             this.dateTime.TabIndex = 2;
-            this.dateTime.Value = new System.DateTime(2020, 4, 9, 0, 0, 0, 0);
+            this.dateTime.Value = new System.DateTime(2020, 4, 10, 0, 0, 0, 0);
             // 
             // eventBox2
             // 
@@ -151,6 +162,8 @@
             // 
             // listBox
             // 
+            this.listBox.BackColor = System.Drawing.SystemColors.InfoText;
+            this.listBox.ForeColor = System.Drawing.SystemColors.Window;
             this.listBox.FormattingEnabled = true;
             this.listBox.Location = new System.Drawing.Point(287, 31);
             this.listBox.Name = "listBox";
@@ -159,9 +172,11 @@
             // 
             // btnClean
             // 
-            this.btnClean.Location = new System.Drawing.Point(552, 303);
+            this.btnClean.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClean.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnClean.Location = new System.Drawing.Point(521, 235);
             this.btnClean.Name = "btnClean";
-            this.btnClean.Size = new System.Drawing.Size(75, 23);
+            this.btnClean.Size = new System.Drawing.Size(93, 23);
             this.btnClean.TabIndex = 2;
             this.btnClean.Text = "Clean list";
             this.btnClean.UseVisualStyleBackColor = true;
@@ -170,6 +185,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label5.Location = new System.Drawing.Point(437, 15);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 13);
@@ -179,6 +195,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label6.Location = new System.Drawing.Point(126, 14);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 13);
@@ -187,19 +204,60 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(287, 303);
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSave.Location = new System.Drawing.Point(176, 302);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.Size = new System.Drawing.Size(88, 23);
             this.btnSave.TabIndex = 5;
-            this.btnSave.Text = "Save to file";
+            this.btnSave.Text = "Save to XML\r\n";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoad.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnLoad.Location = new System.Drawing.Point(521, 302);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(93, 23);
+            this.btnLoad.TabIndex = 6;
+            this.btnLoad.Text = "Load from XML";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
+            // btnJson
+            // 
+            this.btnJson.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnJson.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnJson.Location = new System.Drawing.Point(34, 302);
+            this.btnJson.Name = "btnJson";
+            this.btnJson.Size = new System.Drawing.Size(88, 23);
+            this.btnJson.TabIndex = 7;
+            this.btnJson.Text = "Save to JSON";
+            this.btnJson.UseVisualStyleBackColor = true;
+            this.btnJson.Click += new System.EventHandler(this.btnJson_Click);
+            // 
+            // btnCleanEvent
+            // 
+            this.btnCleanEvent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCleanEvent.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnCleanEvent.Location = new System.Drawing.Point(158, 203);
+            this.btnCleanEvent.Name = "btnCleanEvent";
+            this.btnCleanEvent.Size = new System.Drawing.Size(88, 23);
+            this.btnCleanEvent.TabIndex = 9;
+            this.btnCleanEvent.Text = "Clean";
+            this.btnCleanEvent.UseVisualStyleBackColor = true;
+            this.btnCleanEvent.Click += new System.EventHandler(this.btnCleanEvent_Click);
             // 
             // Event_planer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(639, 337);
+            this.Controls.Add(this.btnJson);
+            this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -232,6 +290,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.Button btnJson;
+        private System.Windows.Forms.Button btnCleanEvent;
     }
 }
 

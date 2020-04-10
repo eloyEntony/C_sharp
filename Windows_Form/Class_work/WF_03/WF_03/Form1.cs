@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 
 /*
@@ -30,7 +32,7 @@ namespace WF_03
 {
     public partial class Event_planer : Form
     {
-        //List<Event> myEvents = new List<Event>();
+        EventList list = new EventList();
         public Event_planer()
         {
             InitializeComponent();
@@ -40,56 +42,77 @@ namespace WF_03
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if(dateTime.Value < DateTime.Today)
+            Event newEvent = new Event
             {
-                MessageBox.Show("Incorrect date. Try again");
-            }
-            else
-            {
-                listBox.Items.Add(eventBox.Text);
-                listBox.Items.Add(eventBox2.Text);
-                listBox.Items.Add(dateTime.Value);
-                listBox.Items.Add(priorityBox.Text);
-                //listBox.Items.Add("---------------------");
-
-                Event tmp = new Event(eventBox.Text, eventBox2.Text, dateTime.Value, priorityBox.Text);
-                //myEvents.Add(tmp);
-                Event.eventList.Add(tmp);
-
-                eventBox.Text = String.Empty;
-                eventBox2.Text = String.Empty;
-                eventBox.Focus();
-            }
-            
+                Title = eventBox.Text,
+                Event_place = eventBox2.Text,
+                Date = dateTime.Value,
+                Priority = priorityBox.Text
+            };
+            list.AddEvent(newEvent);
+            listBox.Items.Add(newEvent);
         }
 
         private void btnClean_Click(object sender, EventArgs e)
         {
             listBox.Items.Clear();
+            list.Clear();
+            
         }
-
-        private void btnAdd_Leave(object sender, EventArgs e)
+        private void btnCleanEvent_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(btnAdd.Text))
-            {
-                this.btnAdd.Focus();
-            }            
+            eventBox.Text = String.Empty;
+            eventBox2.Text = String.Empty;
+            dateTime.Value = DateTime.Today.AddDays(1);
+            priorityBox.Text = "medium";
+            eventBox.Focus();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            string path = @"C:\Users\Anton\Cod\C#\Windows_Form\Class_work\WF_03\WF_03\data.xml";
-
-            XDocument xmlDocument = new XDocument(
-                new XDeclaration("1.0", "utf-8", "yes"),
-                new XElement("Events", from events in Event.GetEvent()
-                                         select new XElement("Event", events.Title,
-                                         new XElement("EventPlace", events.Event_place),
-                                         new XElement("Date", events.Date.ToString()),
-                                         new XElement("Priority", events.Priority))
-
-                )) ;
-            xmlDocument.Save(path);
+            string file = dateTime.Value.ToShortDateString() + ".xml";
+            XmlSerializer xml = new XmlSerializer(list.GetType());  // typeof(EventList)
+            using (Stream stream = new FileStream(file, FileMode.Create, FileAccess.Write))
+            {
+                xml.Serialize(stream, list);
+            }
+            MessageBox.Show("Completed!");
         }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                XmlSerializer xml = new XmlSerializer(typeof(EventList));
+                string file = dateTime.Value.ToShortDateString() + ".xml";
+                using (Stream stream = new FileStream(file, FileMode.Open, FileAccess.Read))
+                {
+                    
+                    list = (EventList)xml.Deserialize(stream);
+                }                
+                ShowInListBox();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("There are no events on this day", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }            
+        }
+
+        private void ShowInListBox()
+        {
+            listBox.Items.Clear();
+            foreach (var item in list.Events)
+            {
+                listBox.Items.Add(item);
+            }
+        }
+
+        private void btnJson_Click(object sender, EventArgs e)
+        {
+            list.SaveToJson();
+            MessageBox.Show("Completed!");
+        }
+
+        
     }
 }

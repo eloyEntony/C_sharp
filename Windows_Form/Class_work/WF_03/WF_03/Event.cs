@@ -6,26 +6,18 @@ using System.Threading.Tasks;
 
 namespace WF_03
 {
-    class Event
+    [Serializable]
+    public class Event
     {
         public string Title { get; set; }
         public string Event_place { get; set; }
         public DateTime Date { get; set; }
-        public string Priority { get; set; }
+        public string Priority { get; set; }      
 
-        static public List<Event> eventList = new List<Event>();
-
-        public Event(string title, string place, DateTime date, string priority )
+        public Event() { }
+        public override string ToString()
         {
-            this.Title = title;
-            this.Date = date;
-            this.Priority = priority;
-            this.Event_place = place;
-        }
-
-        public static List<Event> GetEvent()
-        {
-            return eventList;
+            return $"{Date}  {Priority} {Title} {Event_place}";
         }
 
 
