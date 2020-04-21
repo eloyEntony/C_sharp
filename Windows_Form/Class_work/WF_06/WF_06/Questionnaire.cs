@@ -11,11 +11,11 @@ using System.Windows.Forms;
 //			знання мов програмування С++, C# чи ін.(прапорці, CheckBox-и)
 //	??? знання іноземної мови (тристановий! прапорець, CheckBox з властивістю ThreeStae = true)	
 //			звіт(сформована анкета, Label або TextBox або ListBox)
-//			кнопку для формування анкети(виведення  на форму)  BtnSave
+//			кнопку для формування анкети(виведення на форму)  BtnSave
 //			PictureBox - в залежності від обраної статі - встановити відповідне зображення (PictureBox.Image = Image.FromFile(....))
 
 //			****  Save to file  ??  --->  Serialization
-//****  Load from file  ??  --> Serialization
+//			****  Load from file  ??  --> Serialization
 //*/
 namespace WF_06
 {
@@ -25,29 +25,21 @@ namespace WF_06
 		{
 			InitializeComponent();
 		}
-		
-		HumanList list = new HumanList();
-		Human human = new Human();
-		bool add = false;	
 
+		HumanList list = new HumanList();
+		bool add = false;
 		private void rbMan_CheckedChanged(object sender, System.EventArgs e)
 		{
-			//human = new Human();
-			RadioButton rb = sender as RadioButton;			
-			human.Gender = rb.Text;
-
-			if (rb.Text == "Man" )			
-				pictureBox1.Image = Image.FromFile("../../img/man.png");			
-			else if(rb.Text == "Woman" )
+			RadioButton rb = sender as RadioButton;
+			if (rb.Text == "Man")
+				pictureBox1.Image = Image.FromFile("../../img/man.png");
+			else if (rb.Text == "Woman")
 				pictureBox1.Image = Image.FromFile("../../img/woman.png");
-			
 		}
+
 		BinaryFormatter formatter = new BinaryFormatter();
 		private void btnSave_Click(object sender, System.EventArgs e)
 		{
-			human.Name = tbName.Text;			
-			human.Birthday = dtBirthday.Value.Date;
-
 			using (FileStream fs = new FileStream("people.dat", FileMode.Open, FileAccess.Write))
 			{
 				formatter.Serialize(fs, list);
@@ -64,76 +56,117 @@ namespace WF_06
 				using (FileStream fs = new FileStream("people.dat", FileMode.Open, FileAccess.Read))
 				{
 					HumanList deserilizePeople = (HumanList)formatter.Deserialize(fs);
-					
 					listBox1.Items.Clear();
 					foreach (Human item in deserilizePeople.humanList)
 					{
-						listBox1.Items.Add(item.Name);
-						listBox1.Items.Add(item.Gender);
-						listBox1.Items.Add(item.Birthday);
-						listBox1.Items.Add(item.ShowList(listBox1));						
+						listBox1.Items.Add(" Name     : \t\t" + item.Name);
+						listBox1.Items.Add(" Gender   : \t\t" + item.Gender);
+						listBox1.Items.Add(" Birthday : \t\t" + item.Birthday.ToShortDateString());
+						listBox1.Items.Add(" Hobby    : \t\t" + item.Hobby);
+						listBox1.Items.Add(item.ShowList(listBox1));
+						listBox1.Items.Add("-----------------------------------------------------------------------------");
 					}
 				}
 			}
 			catch (Exception)
 			{
-				MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show("File is empty", "Empty", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 		}
 
-		private void button1_Click(object sender, System.EventArgs e)
-		{ 
-			if (!add){
+		private void btnAdd_Click(object sender, System.EventArgs e)
+		{
+			if (!add)
+			{
 				btnSave.Enabled = true;
-				button1.Enabled = false;
+				btnAdd.Enabled = false;
 			}
-			
+
+			Human human = new Human();
+			human.Name = tbName.Text;
+			human.Birthday = dtBirthday.Value.Date;
+			human.Hobby = tbHobby.Text;
 			listBox1.Items.Add(" Name     : \t\t" + tbName.Text);
+
+			foreach (Control item in this.Controls)
+			{
+				if (item is GroupBox)
+				{
+					GroupBox tmp = item as GroupBox;
+					if (tmp.Text == "Gender")
+					{
+						foreach (var t in item.Controls)
+						{
+							if (t is RadioButton)
+							{
+								RadioButton rb = t as RadioButton;
+								if (rb.Checked)
+								{
+									human.Gender = rb.Text;
+								}
+							}
+						}
+					}
+				}
+			}
+
 			listBox1.Items.Add(" Gender   : \t\t" + human.Gender);
 			listBox1.Items.Add(" Birthday : \t\t" + dtBirthday.Value.ToShortDateString());
+			listBox1.Items.Add(" Hobby    : \t\t" + tbHobby.Text);
 
-			foreach (Control item in this.Controls){
-				if (item is GroupBox){					
+			foreach (Control item in this.Controls)
+			{
+				if (item is GroupBox)
+				{
 					GroupBox tmp = item as GroupBox;
-
-					if (tmp.Text == "Programming languages"){
+					if (tmp.Text == "Programming languages")
+					{
 						listBox1.Items.Add(" Programming languages : ");
-						foreach (var n in item.Controls){
-							if (n is CheckBox){
+						foreach (var n in item.Controls)
+						{
+							if (n is CheckBox)
+							{
 								CheckBox tgh = n as CheckBox;
 								if (tgh.Checked)
 								{
 									human.program.Add(tgh.Text);
 									listBox1.Items.Add("\t\t\t" + tgh.Text);
-								}									
+								}
 							}
 						}
 					}
 				}
 			}
 
-			foreach (Control item in this.Controls){
-				if (item is GroupBox){
-					GroupBox tmp = item as GroupBox;					
+			foreach (Control item in this.Controls)
+			{
+				if (item is GroupBox)
+				{
+					GroupBox tmp = item as GroupBox;
 
-					if (tmp.Text == "Foreign language"){
+					if (tmp.Text == "Foreign language")
+					{
 						listBox1.Items.Add(" Foreign language : ");
-						foreach (var t in item.Controls){
-							if (t is CheckBox){
+						foreach (var t in item.Controls)
+						{
+							if (t is CheckBox)
+							{
 								CheckBox tm = t as CheckBox;
 								if (tm.Checked)
 								{
 									human.language.Add(tm.Text);
 									listBox1.Items.Add("\t\t\t" + tm.Text);
-								}									
+								}
 							}
 						}
 					}
 				}
 			}
-			list.Add(human);		
+
+			list.Add(human);
+			btnClear_Click(null, null);
+			listBox1.Items.Add("-----------------------------------------------------------------------------");
 		}
-	
 
 		private void tbName_KeyPress(object sender, KeyPressEventArgs e)
 		{
@@ -145,8 +178,8 @@ namespace WF_06
 		{
 			if (checkBox1.Checked)
 			{
-				if(tbName.Text!=String.Empty)
-					button1.Enabled = true;
+				if (tbName.Text != String.Empty && (rbMan.Checked || rbWoman.Checked) && tbHobby.Text !=String.Empty)
+					btnAdd.Enabled = true;
 				else
 				{
 					MessageBox.Show("Fields are not filled");
@@ -154,8 +187,8 @@ namespace WF_06
 				}
 			}
 			else
-				button1.Enabled = false;
-				
+				btnAdd.Enabled = false;
+
 		}
 
 		private void btnClear_Click(object sender, EventArgs e)
@@ -166,16 +199,21 @@ namespace WF_06
 			rbMan.Checked = false;
 			rbWoman.Checked = false;
 			checkBox1.Checked = false;
+			tbHobby.Text = String.Empty;
 			pictureBox1.Image = Image.FromFile("../../img/0.png");
 
-			foreach (Control item in this.Controls){
-				if (item is GroupBox){
+			foreach (Control item in this.Controls)
+			{
+				if (item is GroupBox)
+				{
 					GroupBox tmp = item as GroupBox;
-					foreach (var t in item.Controls){
-						if (t is CheckBox){
+					foreach (var t in item.Controls)
+					{
+						if (t is CheckBox)
+						{
 							CheckBox tm = t as CheckBox;
-							tm.Checked = false;								
-						}						
+							tm.Checked = false;
+						}
 					}
 				}
 			}
@@ -184,6 +222,7 @@ namespace WF_06
 		private void btnCleanList_Click(object sender, EventArgs e)
 		{
 			listBox1.Items.Clear();
-		}	
+			list.Clean();
+		}
 	}
 }

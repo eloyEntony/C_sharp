@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace WF_06
 {
@@ -19,6 +17,11 @@ namespace WF_06
         public void Add(Human human)
         {
             humanList.Add(human);
+        }
+
+        public void Clean()
+        {
+            humanList.Clear();
         }
     }
 }

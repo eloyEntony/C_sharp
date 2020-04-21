@@ -42,7 +42,7 @@
             this.cbAn = new System.Windows.Forms.CheckBox();
             this.cbEng = new System.Windows.Forms.CheckBox();
             this.cbUkr = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -53,7 +53,7 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnCleanList = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbHobby = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -79,7 +79,7 @@
             this.groupBox1.Size = new System.Drawing.Size(200, 67);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Gender :";          
+            this.groupBox1.Text = "Gender";
             // 
             // rbWoman
             // 
@@ -107,19 +107,19 @@
             // 
             // dtBirthday
             // 
-            this.dtBirthday.Location = new System.Drawing.Point(311, 187);
-            this.dtBirthday.MaxDate = new System.DateTime(2020, 4, 14, 0, 0, 0, 0);
+            this.dtBirthday.Location = new System.Drawing.Point(311, 193);
+            this.dtBirthday.MaxDate = new System.DateTime(2020, 4, 21, 0, 0, 0, 0);
             this.dtBirthday.Name = "dtBirthday";
             this.dtBirthday.Size = new System.Drawing.Size(200, 20);
             this.dtBirthday.TabIndex = 2;
-            this.dtBirthday.Value = new System.DateTime(2020, 4, 14, 0, 0, 0, 0);
+            this.dtBirthday.Value = new System.DateTime(2020, 4, 21, 0, 0, 0, 0);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.cbPython);
             this.groupBox2.Controls.Add(this.cbC2);
             this.groupBox2.Controls.Add(this.cbC);
-            this.groupBox2.Location = new System.Drawing.Point(311, 222);
+            this.groupBox2.Location = new System.Drawing.Point(311, 281);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(89, 117);
             this.groupBox2.TabIndex = 4;
@@ -161,7 +161,7 @@
             this.groupBox3.Controls.Add(this.cbAn);
             this.groupBox3.Controls.Add(this.cbEng);
             this.groupBox3.Controls.Add(this.cbUkr);
-            this.groupBox3.Location = new System.Drawing.Point(422, 222);
+            this.groupBox3.Location = new System.Drawing.Point(422, 281);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(89, 117);
             this.groupBox3.TabIndex = 5;
@@ -201,16 +201,16 @@
             this.cbUkr.ThreeState = true;
             this.cbUkr.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnAdd
             // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(311, 484);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Add questionnaire";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnAdd.Enabled = false;
+            this.btnAdd.Location = new System.Drawing.Point(311, 459);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(200, 48);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.Text = "Add questionnaire";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnSave
             // 
@@ -245,7 +245,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(315, 171);
+            this.label3.Location = new System.Drawing.Point(315, 177);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 13);
             this.label3.TabIndex = 12;
@@ -282,7 +282,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(311, 451);
+            this.checkBox1.Location = new System.Drawing.Point(318, 418);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(57, 17);
             this.checkBox1.TabIndex = 15;
@@ -292,7 +292,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(436, 451);
+            this.btnClear.Location = new System.Drawing.Point(436, 414);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 16;
@@ -310,18 +310,17 @@
             this.btnCleanList.UseVisualStyleBackColor = true;
             this.btnCleanList.Click += new System.EventHandler(this.btnCleanList_Click);
             // 
-            // textBox1
+            // tbHobby
             // 
-            this.textBox1.Location = new System.Drawing.Point(311, 358);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 73);
-            this.textBox1.TabIndex = 18;    
+            this.tbHobby.Location = new System.Drawing.Point(311, 246);
+            this.tbHobby.Name = "tbHobby";
+            this.tbHobby.Size = new System.Drawing.Size(200, 20);
+            this.tbHobby.TabIndex = 18;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(315, 342);
+            this.label1.Location = new System.Drawing.Point(315, 230);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 19;
@@ -331,9 +330,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(552, 528);
+            this.ClientSize = new System.Drawing.Size(546, 528);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbHobby);
             this.Controls.Add(this.btnCleanList);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.checkBox1);
@@ -343,7 +342,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.dtBirthday);
@@ -380,7 +379,7 @@
         private System.Windows.Forms.CheckBox cbAn;
         private System.Windows.Forms.CheckBox cbEng;
         private System.Windows.Forms.CheckBox cbUkr;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Label label2;
@@ -391,7 +390,7 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnCleanList;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbHobby;
         private System.Windows.Forms.Label label1;
     }
 }

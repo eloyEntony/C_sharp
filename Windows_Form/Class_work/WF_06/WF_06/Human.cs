@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WF_06
@@ -15,11 +12,9 @@ namespace WF_06
         public DateTime Birthday { get; set; }
         public List<string> program = new List<string>();
         public List<string> language = new List<string>(); 
+        public string Hobby { get; set; }
 
-        public Human()
-        {
-                
-        }
+        public Human(){}
 
         public override string ToString()
         {
@@ -28,14 +23,15 @@ namespace WF_06
 
         public string ShowList(ListBox listBox)
         {
+            listBox.Items.Add(" Programming languages : ");
             foreach (var item in program)
             {
-                listBox.Items.Add(item);
+                listBox.Items.Add("\t\t\t" + item);
             }
-
+            listBox.Items.Add(" Foreign language : ");
             foreach (var item in language)
             {
-                listBox.Items.Add(item);
+                listBox.Items.Add("\t\t\t" + item);
             }
 
             return "";           
