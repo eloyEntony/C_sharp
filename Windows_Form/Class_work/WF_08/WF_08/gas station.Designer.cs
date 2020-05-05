@@ -148,6 +148,7 @@
             // 
             // cbGas
             // 
+            this.cbGas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGas.Font = new System.Drawing.Font("Ink Free", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbGas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cbGas.FormattingEnabled = true;
@@ -586,7 +587,7 @@
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Gas_station";
-            this.Text = "Form1";
+            this.Text = "Gas station";
             this.gbGas.ResumeLayout(false);
             this.gbGas.PerformLayout();
             this.groupBox1.ResumeLayout(false);

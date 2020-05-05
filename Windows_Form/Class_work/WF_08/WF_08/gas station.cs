@@ -13,7 +13,6 @@ namespace WF_08
         {
             InitializeComponent();
         }
-
         private void radioButton1_CheckedChanged(object sender, System.EventArgs e)
         {
             RadioButton rb = sender as RadioButton;
@@ -31,7 +30,6 @@ namespace WF_08
                 tbSumPrice.Text = "0";
             }   
         }
-
         private void cbGas_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             if (cbGas.SelectedItem == null)
@@ -60,7 +58,6 @@ namespace WF_08
                     break;               
             }            
         }
-
         private void numLiter_ValueChanged(object sender, System.EventArgs e)
         {
             gas.Litr = (float)numLiter.Value;
@@ -70,33 +67,24 @@ namespace WF_08
 
             //tbSumPrice.Text = ((float)gas.Sum()).ToString();
         }
-
         private void tbSumPrice_TextChanged(object sender, EventArgs e)
-        {
-            //double money = Convert.ToDouble(tbSumPrice.Text);
-            int money = int.Parse(tbSumPrice.Text);
-
-            if (money > 1000)
-            {
-                MessageBox.Show("1000");
+        {            
+            if (String.IsNullOrWhiteSpace(tbSumPrice.Text))            
                 return;
-            }
-            
+
+            int money = int.Parse(tbSumPrice.Text);
             float tmp = (float) money / gas.Price;
             numLiter.Maximum = 1000000000;
             gas.Litr = tmp;
             label7.Text = gas.Name + Environment.NewLine 
                 + money.ToString() + "  $" +Environment.NewLine
-                + tmp + " L";
-
-            //numLiter.Value = (decimal)gas.Litr;
+                + tmp + " L";            
         }
         private void tbSumPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
                 e.Handled = true;
         }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox tmp = sender as CheckBox;
@@ -139,7 +127,6 @@ namespace WF_08
                 }
             }            
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             label8.Text = "";
@@ -191,15 +178,13 @@ namespace WF_08
                 label8.Text += item.ToString()+ Environment.NewLine;
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             label14.Text = "";
             label15.Text = "";
             int tmp = 0;
             float sum = 0;
-            foreach (var item in products)
-            {
+            foreach (var item in products){
                 tmp += item.Price * item.Count;
             }
             sum = (float)(gas.Sum() + tmp);
@@ -209,7 +194,5 @@ namespace WF_08
 
             label15.Text = "All : " + sum.ToString() + " $";
         }
-
-       
     }
 }
