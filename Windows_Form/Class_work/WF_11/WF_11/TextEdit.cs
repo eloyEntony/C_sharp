@@ -49,6 +49,18 @@ namespace WF_11
 {
 	public partial class TextEdit : Form
 	{
+		int id = 0;
+		public static readonly int fileMenuCounter = 8;
+
+		bool saveRepead = false;
+		bool style_on = false;
+		bool save = false;
+		bool open = false;
+		string openFileName = "";
+
+		NewEditor newWindow;
+		RichTextBox textBox;
+		ColorDialog cd;
 		public TextEdit()
 		{
 			InitializeComponent();
@@ -62,12 +74,6 @@ namespace WF_11
 			//cbSize.Text = "8";
 		}
 
-		bool saveRepead = false;
-		bool style_on = false;
-		bool save = false;
-		bool open = false;
-		string openFileName = "";
-
 		//////////////////////
 		private void openToolStripMenuItem_Click(object sender, EventArgs e)
 		{
@@ -77,10 +83,19 @@ namespace WF_11
 			ofd.InitialDirectory = @"C:\Users\Anton\Desktop";
 			if (ofd.ShowDialog() == DialogResult.OK)
 			{
+				toolStripMenuItem3_Click(null, null);
+
 				if (Path.GetExtension(ofd.FileName) == ".rtf")
-					richTextBox1.LoadFile(ofd.FileName);
+				{
+					//richTextBox1.LoadFile(ofd.FileName);
+					newWindow.TextBox.LoadFile(ofd.FileName);
+				}
 				else
-					richTextBox1.LoadFile(ofd.FileName, RichTextBoxStreamType.UnicodePlainText);
+				{
+					//richTextBox1.LoadFile(ofd.FileName, RichTextBoxStreamType.UnicodePlainText);
+					newWindow.TextBox.LoadFile(ofd.FileName, RichTextBoxStreamType.UnicodePlainText);
+				}
+					
 				toolStripLabel1.Text = ofd.FileName;
 				openFileName = ofd.FileName;
 				open = true;
@@ -95,9 +110,9 @@ namespace WF_11
 				return;
 			}
 			if (Path.GetExtension(openFileName) == ".rtf")
-				richTextBox1.SaveFile(openFileName);
+				richTextBox.SaveFile(openFileName);
 			else
-				richTextBox1.SaveFile(openFileName, RichTextBoxStreamType.UnicodePlainText);
+				richTextBox.SaveFile(openFileName, RichTextBoxStreamType.UnicodePlainText);
 			Notify_save();
 		}
 		private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -110,9 +125,9 @@ namespace WF_11
 			if (sfd.ShowDialog() == DialogResult.OK)
 			{
 				if (Path.GetExtension(sfd.FileName) == ".rtf")
-					richTextBox1.SaveFile(sfd.FileName);
+					richTextBox.SaveFile(sfd.FileName);
 				else
-					richTextBox1.SaveFile(sfd.FileName, RichTextBoxStreamType.UnicodePlainText);
+					richTextBox.SaveFile(sfd.FileName, RichTextBoxStreamType.UnicodePlainText);
 				openFileName = sfd.FileName;
 				Notify_save();
 			}
@@ -168,21 +183,21 @@ namespace WF_11
 					break;
 			}
 
-			if (richTextBox1.SelectionLength != 0)
+			if (newWindow.TextBox.SelectionLength != 0)
 			{
-				richTextBox1.SelectionFont = new Font(richTextBox1.Font, new_fontStyle);
+				newWindow.TextBox.SelectionFont = new Font(newWindow.TextBox.Font, new_fontStyle);
 				return;
 			}
-			richTextBox1.Font = new Font(richTextBox1.Font, new_fontStyle);
+			newWindow.TextBox.Font = new Font(newWindow.TextBox.Font, new_fontStyle);
 		}
 		private void Style_back()
 		{
-			if (richTextBox1.SelectionLength != 0)
+			if (newWindow.TextBox.SelectionLength != 0)
 			{
-				richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Regular);
+				newWindow.TextBox.SelectionFont = new Font(newWindow.TextBox.Font, FontStyle.Regular);
 				return;
 			}
-			richTextBox1.Font = new Font(richTextBox1.Font, FontStyle.Regular);
+			newWindow.TextBox.Font = new Font(newWindow.TextBox.Font, FontStyle.Regular);
 		}
 
 		//////////////////////
@@ -195,16 +210,16 @@ namespace WF_11
 
 			if (fd.ShowDialog() == DialogResult.OK)
 			{
-				if (richTextBox1.SelectionLength != 0)
+				if (newWindow.TextBox.SelectionLength != 0)
 				{
-					richTextBox1.SelectionFont = fd.Font;
-					richTextBox1.SelectionColor = fd.Color;
+					newWindow.TextBox.SelectionFont = fd.Font;
+					newWindow.TextBox.SelectionColor = fd.Color;
 				}
 				else
 				{
-					richTextBox1.Font = fd.Font;
-					richTextBox1.SelectAll();
-					richTextBox1.SelectionColor = fd.Color;
+					newWindow.TextBox.Font = fd.Font;
+					newWindow.TextBox.SelectAll();
+					newWindow.TextBox.SelectionColor = fd.Color;
 				}
 				cbSize.Text = fd.Font.Size.ToString();
 				cbFont.SelectedItem = fd.Font.FontFamily;
@@ -212,31 +227,31 @@ namespace WF_11
 		}		
 		private void btnColor_Click(object sender, EventArgs e)
 		{
-			ColorDialog cd = new ColorDialog();
+			cd = new ColorDialog();
 			if (cd.ShowDialog() == DialogResult.OK)
-				if (richTextBox1.SelectionLength != 0)
-					richTextBox1.SelectionColor = cd.Color;
+				if (newWindow.TextBox.SelectionLength != 0)
+					newWindow.TextBox.SelectionColor = cd.Color;
 				else
-					richTextBox1.ForeColor = cd.Color;
+					newWindow.TextBox.ForeColor = cd.Color;
 		}
 		private void btnBackColor_Click(object sender, EventArgs e)
 		{
 			ColorDialog cd = new ColorDialog();
 			if (cd.ShowDialog() == DialogResult.OK)
-				if (richTextBox1.SelectionLength != 0)
-					richTextBox1.SelectionBackColor = cd.Color;
+				if (newWindow.TextBox.SelectionLength != 0)
+					newWindow.TextBox.SelectionBackColor = cd.Color;
 				else
-					richTextBox1.BackColor = cd.Color;
+					newWindow.TextBox.BackColor = cd.Color;
 		}
 
 		//////////////////////
 		private void btnUndo_Click(object sender, EventArgs e)
 		{
-			richTextBox1.Undo();
+			newWindow.TextBox.Undo();
 		}
 		private void btnRedo_Click(object sender, EventArgs e)
 		{
-			richTextBox1.Redo();
+			newWindow.TextBox.Redo();
 		}
 
 		//////////////////////
@@ -244,28 +259,29 @@ namespace WF_11
 		{
 			string newFont = cbFont.Text.ToString();
 
-			if (richTextBox1.SelectionLength != 0)
-				richTextBox1.SelectionFont = new Font(newFont, Convert.ToInt32(cbSize.Text));
+			if (newWindow.TextBox.SelectionLength != 0)
+				newWindow.TextBox.SelectionFont = new Font(newFont, Convert.ToInt32(cbSize.Text));
 			else
-				richTextBox1.Font = new Font(newFont, Convert.ToInt32(cbSize.Text));
+				newWindow.TextBox.Font = new Font(newFont, Convert.ToInt32(cbSize.Text));
 		}
 		private void cbSize_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			int newSize = Convert.ToInt32(cbSize.Text);
 
-			if (richTextBox1.SelectionLength != 0)
-				richTextBox1.SelectionFont = new Font(cbFont.Text.ToString(), newSize);
+			if (newWindow.TextBox.SelectionLength != 0)
+				newWindow.TextBox.SelectionFont = new Font(cbFont.Text.ToString(), newSize);
 			else
-				richTextBox1.Font = new Font(cbFont.Text.ToString(), newSize);
+				newWindow.TextBox.Font = new Font(cbFont.Text.ToString(), newSize);
 		}
 		private void btnUpFont_Click(object sender, EventArgs e)
 		{
-			int newSize = Convert.ToInt32(cbSize.Text);
+			int newSize = Convert.ToInt32(cbSize.Text);			
 
-			if (richTextBox1.SelectionLength != 0)
-				richTextBox1.SelectionFont = new Font(cbFont.Text.ToString(), newSize++);
+			if (newWindow.TextBox.SelectionLength != 0)
+				newWindow.TextBox.SelectionFont = new Font(cbFont.Text.ToString(), newSize++);
 			else
-				richTextBox1.Font = new Font(cbFont.Text.ToString(), newSize++);
+				newWindow.TextBox.Font = new Font(cbFont.Text.ToString(), newSize++);
+			
 
 			cbSize.Text = newSize.ToString();
 		}
@@ -273,10 +289,10 @@ namespace WF_11
 		{
 			int newSize = Convert.ToInt32(cbSize.Text);
 
-			if (richTextBox1.SelectionLength != 0)
-				richTextBox1.SelectionFont = new Font(cbFont.Text.ToString(), newSize--);
+			if (newWindow.TextBox.SelectionLength != 0)
+				newWindow.TextBox.SelectionFont = new Font(cbFont.Text.ToString(), newSize--);
 			else
-				richTextBox1.Font = new Font(cbFont.Text.ToString(), newSize--);
+				newWindow.TextBox.Font = new Font(cbFont.Text.ToString(), newSize--);
 
 			cbSize.Text = newSize.ToString();
 		}
@@ -284,24 +300,24 @@ namespace WF_11
 		//////////////////////
 		private void btnTextCentr_Click(object sender, EventArgs e)
 		{
-			richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
+			newWindow.TextBox.SelectionAlignment = HorizontalAlignment.Center;
 		}
 		private void btnTextLeft_Click(object sender, EventArgs e)
 		{
-			richTextBox1.SelectionAlignment = HorizontalAlignment.Left;
+			newWindow.TextBox.SelectionAlignment = HorizontalAlignment.Left;
 		}
 		private void btnTextRight_Click(object sender, EventArgs e)
 		{
-			richTextBox1.SelectionAlignment = HorizontalAlignment.Right;
+			newWindow.TextBox.SelectionAlignment = HorizontalAlignment.Right;
 		}
 		private void btnBullet_Click(object sender, EventArgs e)
 		{
-			if (richTextBox1.SelectionBullet)
+			if (newWindow.TextBox.SelectionBullet)
 			{
-				richTextBox1.SelectionBullet = false;
+				newWindow.TextBox.SelectionBullet = false;
 				return;
 			}
-			richTextBox1.SelectionBullet = true;
+			newWindow.TextBox.SelectionBullet = true;
 		}
 
 		//////////////////////
@@ -353,15 +369,15 @@ namespace WF_11
 			{
 				SaveFileDialog sfd = new SaveFileDialog();
 				sfd.Filter = "Rtf files(*.rtf)|*.rtf|Text files(*.txt)|*.txt|Cod(*.cs)|*.cs|Html file(*.html)|*.html|All files|*.*";
-				sfd.InitialDirectory = @"C:\Users\Anton\Desktop";
+						sfd.InitialDirectory = @"C:\Users\Anton\Desktop";
 				sfd.OverwritePrompt = true;
 				sfd.FileName = "New text document";
 				if (sfd.ShowDialog() == DialogResult.OK)
 				{
 					if (Path.GetExtension(sfd.FileName) == ".rtf")
-						richTextBox1.SaveFile(sfd.FileName);
+						newWindow.TextBox.SaveFile(sfd.FileName);
 					else
-						richTextBox1.SaveFile(sfd.FileName, RichTextBoxStreamType.UnicodePlainText);
+						newWindow.TextBox.SaveFile(sfd.FileName, RichTextBoxStreamType.UnicodePlainText);
 					openFileName = sfd.FileName;
 					Notify_save();
 				}
@@ -389,9 +405,9 @@ namespace WF_11
 				if (sfd.ShowDialog() == DialogResult.OK)
 				{
 					if (Path.GetExtension(sfd.FileName) == ".rtf")
-						richTextBox1.SaveFile(sfd.FileName);
+						richTextBox.SaveFile(sfd.FileName);
 					else
-						richTextBox1.SaveFile(sfd.FileName, RichTextBoxStreamType.UnicodePlainText);
+						richTextBox.SaveFile(sfd.FileName, RichTextBoxStreamType.UnicodePlainText);
 					openFileName = sfd.FileName;
 					Notify_save();
 					e.Cancel = false;
@@ -403,44 +419,48 @@ namespace WF_11
 				e.Cancel = false;
 		}
 
+		private void TextEdit_FormClosed(object sender, FormClosedEventArgs e)
+		{
+
+		}
 
 		//////////////////////
 		private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			richTextBox1.SelectAll();
+			newWindow.TextBox.SelectAll();
 		}
 		private void copyToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if(richTextBox1.SelectionLength != 0)
+			if(newWindow.TextBox.SelectionLength != 0)
 			{
-				richTextBox1.Copy();
+				newWindow.TextBox.Copy();
 				return;
 			}
-			richTextBox1.SelectAll();
-			richTextBox1.Copy();			
+			newWindow.TextBox.SelectAll();
+			newWindow.TextBox.Copy();			
 		}
 		private void cutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if (richTextBox1.SelectionLength != 0)
+			if (newWindow.TextBox.SelectionLength != 0)
 			{
-				richTextBox1.Cut();
+				richTextBox.Cut();
 				return;
 			}
-			richTextBox1.SelectAll();
-			richTextBox1.Cut();
+			newWindow.TextBox.SelectAll();
+			newWindow.TextBox.Cut();
 		}
 		private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if (richTextBox1.SelectionLength != 0)
+			if (newWindow.TextBox.SelectionLength != 0)
 			{
-				richTextBox1.Paste();
+				newWindow.TextBox.Paste();
 				return;
-			}			
-			richTextBox1.Paste();
+			}
+			newWindow.TextBox.Paste();
 		}
 		private void clearAllToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			richTextBox1.Clear();
+			newWindow.TextBox.Clear();
 		}
 
 		//////////////////////
@@ -449,6 +469,75 @@ namespace WF_11
 			Process.Start("https://github.com/eloyEntony");
 		}
 
+		private void TextEdit_MdiChildActivate(object sender, EventArgs e)
+		{
+			if (this.MdiChildren.Length == 0)
+				return;
+
+			newWindow = (NewEditor)this.ActiveMdiChild;
+
+			if (newWindow == null)
+			{
+				toolStripLabel1.Text = "";
+				id = 0;
+				return;
+			}
+
+
+
+			//cbSize.Text = newWindow.FontSize.ToString();
+			//cbFont.Text = newWindow.TextBox.Font.Name;
+			//cd.Color = newWindow.TextBox.ForeColor;
+
+			foreach (ToolStripItem item in fileToolStripMenuItem.DropDownItems)
+			{
+				if (item is ToolStripMenuItem)
+					if (item.Text.Contains(newWindow.Text))
+					{
+						(item as ToolStripMenuItem).Checked = true;
+					}
+					else
+						(item as ToolStripMenuItem).Checked = false;
+			}
+			toolStripLabel1.Text = newWindow.Text;
+		}
+
+		private void toolStripMenuItem3_Click(object sender, EventArgs e)
+		{
+			newWindow = new NewEditor();
+			newWindow.Text += $"{++id}";
+			newWindow.MdiParent = this;	
+			newWindow.Show();
+
+
+			if (id == 1)
+				fileToolStripMenuItem.DropDownItems.Add(new ToolStripSeparator());
+
+			ToolStripMenuItem newItem = new ToolStripMenuItem();
+			newItem.Text = newWindow.Text;
+
+			newItem.Click += (o, s) =>
+			{
+				newWindow.Focus();
+				if (newWindow.WindowState == FormWindowState.Minimized)
+					newWindow.WindowState = FormWindowState.Normal;
+			};
+
+			fileToolStripMenuItem.DropDownItems.Add(newItem);
+			newItem.Checked = true;
+			toolStripLabel1.Text = newWindow.Text;
+		}
+
+
+		public ToolStripMenuItem menuItem
+		{
+			get
+			{
+				return this.fileToolStripMenuItem;
+			}
+		}
+
 		
 	}
+
 }

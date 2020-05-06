@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NewEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewEditor.Designer.cs">
+      <DependentUpon>NewEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="TextEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="NewEditor.resx">
+      <DependentUpon>NewEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TextEdit.resx">
       <DependentUpon>TextEdit.cs</DependentUpon>
     </EmbeddedResource>
