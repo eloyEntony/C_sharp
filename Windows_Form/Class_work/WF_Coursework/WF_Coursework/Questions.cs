@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WF_Coursework
+{
+    class Questions
+    {
+
+        public string question;
+        public List<string> answers = new List<string>();
+        public string type;
+        public List<string> trueAnswer = new List<string>();
+        public Questions()
+        {
+                
+        }
+    }
+}
