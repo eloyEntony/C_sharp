@@ -1,0 +1,57 @@
+﻿<Window x:Class="WPF_04.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_04"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="307*"/>
+            <RowDefinition Height="112*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="295*"/>
+                <ColumnDefinition Width="101*"/>
+            </Grid.ColumnDefinitions>
+            <MediaElement Margin="5" Grid.Column="0" Height="300" x:Name="video" LoadedBehavior="Manual" MediaOpened="video_MediaOpened"></MediaElement>
+            <Border Grid.Column="1" BorderThickness="2" BorderBrush="White" >
+                <StackPanel>
+                    <TextBlock Foreground="White" Margin="5"> PLAYLIST :</TextBlock>
+                    <Border BorderThickness="1" BorderBrush="White" Margin="5" CornerRadius="5">
+                        <ListBox x:Name="playList" Background="Black" Foreground="White"></ListBox>
+                    </Border>
+                    <Button HorizontalAlignment="Right" Width="80" Height="25" Margin="5 0" Click="Open">Add file</Button>
+                </StackPanel>
+
+            </Border>
+        </Grid>
+        <Border Grid.Row="1" BorderThickness="2" BorderBrush="White">
+            <StackPanel   >
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="43*"/>
+                        <ColumnDefinition Width="353*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" x:Name="lblStatus" Margin="10 0" Foreground="White" Grid.ColumnSpan="2" VerticalContentAlignment="Center">00:00 / 00:00</Label>
+                    <Slider Grid.Column="1" x:Name="timelineSlider" Height="20" Margin="10" SmallChange="0.1" Minimum="0" Maximum="1" LargeChange="0.25"  LostMouseCapture="timelineSlider_LostMouseCapture" Grid.ColumnSpan="2" ></Slider>
+                </Grid>
+
+
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                    <Button  Width="80" Height="25" Margin="10" Click="Open">Open</Button>
+                    <Button  Width="80" Height="25" Margin="10" Click="Play">Play</Button>
+                    <Button  Width="80" Height="25" Margin="10" Click="Stop">Stop</Button>
+                    <Button  Width="80" Height="25" Margin="10" Click="Mute">Mute</Button>
+                    <TextBlock Height="25" Foreground="White">Volume</TextBlock>
+                    <Slider  Width="250" Height="20" Margin="10" SmallChange="0.1" Minimum="0" Maximum="1" LargeChange="0.25" Value="{Binding ElementName=video, Path=Volume}" ></Slider>
+
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

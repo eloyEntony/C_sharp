@@ -1,0 +1,39 @@
+﻿<Window x:Class="WPF_02.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_02"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37*"/>
+            <RowDefinition Height="382*"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black" BorderThickness="1">
+            <WrapPanel Background="Aqua">
+                <Button Click="Button_Open" Margin="2" Width="50">Open</Button>
+                <Button Click="Button_Save" Margin="2" Width="50">Save</Button>
+
+                <Label FontSize="20" Padding="1" VerticalContentAlignment="Top" Height="35">|</Label>
+
+                <RadioButton Checked="RadioButton_Checked" VerticalContentAlignment="Center" Width="60" Content="Erase"></RadioButton>
+                <RadioButton Checked="RadioButton_Checked" VerticalContentAlignment="Center" Width="70" Content="Gesture"></RadioButton>
+                <RadioButton x:Name="paintRB" Checked="RadioButton_Checked" VerticalContentAlignment="Center" Width="60" Content="Paint"></RadioButton>
+
+                <Label FontSize="20" Padding="1" VerticalContentAlignment="Top" Height="35" >|</Label>
+                <ComboBox Name="cbColor" Margin="2" Width="50" SelectionChanged="ComboBox_SelectionChanged">
+                    <!--<StackPanel Orientation="Horizontal">-->
+                    <!--<Ellipse Fill="Green" Width="20" Height="20"/>-->
+                    <Label>Green</Label>
+                    <!--</StackPanel>-->
+                    <Label>Blue</Label>
+                </ComboBox>
+                <ComboBox Name="cbSize" Margin="2" Width="50" SelectionChanged="cbSize_SelectionChanged">
+                </ComboBox>
+            </WrapPanel>
+        </Border>
+        <InkCanvas Grid.Row="1" Name="ink"></InkCanvas>
+    </Grid>
+</Window>
