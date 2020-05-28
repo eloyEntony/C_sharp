@@ -1,0 +1,83 @@
+﻿<Window x:Class="WPF_06.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_06"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="360" Width="546">
+    <StackPanel>
+        <Grid Margin="0 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="75*"/>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="566*"/>
+                <ColumnDefinition Width="60*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel>
+                <CheckBox Margin="5" Name="alpha"></CheckBox>
+                <CheckBox Margin="5" Name="red"></CheckBox>
+                <CheckBox Margin="5" Name="green"></CheckBox>
+                <CheckBox Margin="5" Name="blue"></CheckBox>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Label HorizontalAlignment="Right">Alpha :</Label>
+                <Label HorizontalAlignment="Right">Red :</Label>
+                <Label HorizontalAlignment="Right">Green :</Label>
+                <Label HorizontalAlignment="Right">Blue :</Label>
+            </StackPanel>
+            <StackPanel Grid.Column="2">
+                <Label Content="{Binding ElementName=slider1, Path=Value}"></Label>
+                <Label Content="{Binding ElementName=slider2, Path=Value}"></Label>
+                <Label Content="{Binding ElementName=slider3, Path=Value}"></Label>
+                <Label Content="{Binding ElementName=slider4, Path=Value}"></Label>
+            </StackPanel>
+            <StackPanel Grid.Column="3">
+                <Slider Name="slider1" Margin="4" Minimum="0" Maximum="255" 
+                        IsEnabled="{Binding ElementName=alpha, Path=IsChecked}"
+                        TickFrequency="1"
+                        IsSnapToTickEnabled="True"
+                        Value="{Binding Alfa, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">                    
+                </Slider>
+                <Slider Name="slider2" Margin="4" Minimum="0" Maximum="255"
+                        IsEnabled="{Binding ElementName=red, Path=IsChecked}"
+                        TickFrequency="1" 
+                        IsSnapToTickEnabled="True"
+                        Value="{Binding Red, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">                    
+                </Slider>
+                <Slider Name="slider3" Margin="4" Minimum="0" Maximum="255" 
+                        IsEnabled="{Binding ElementName=green, Path=IsChecked}"
+                        TickFrequency="1" 
+                        Value="{Binding Green, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        IsSnapToTickEnabled="True">                    
+                </Slider>
+                <Slider Name="slider4" Margin="4" Minimum="0" Maximum="255" 
+                        IsEnabled="{Binding ElementName=blue, Path=IsChecked}"
+                        TickFrequency="1" 
+                        Value="{Binding Blue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        IsSnapToTickEnabled="True">                    
+                </Slider>
+            </StackPanel>
+            <TextBlock Name="tbColor" Grid.Column="4" Margin="5 0" 
+                       Background="{Binding Newcolor, UpdateSourceTrigger=PropertyChanged}">                
+            </TextBlock>
+        </Grid>
+        <Button Name="btnAdd" Height="20" Width="70" HorizontalAlignment="Left" Margin="5 0" Click="Button_Click">Add</Button>
+        <ScrollViewer>
+            <ListBox Name="list" Margin="5">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Margin="10 0" Content="{Binding newcolor}" />
+                            <TextBlock Width="250" Margin="10 0" Background="{Binding newcolor}" />
+                            <Button HorizontalAlignment="Right" Height="20" Width="70" Click="Delete_button">Delete</Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+        
+    </StackPanel>
+</Window>

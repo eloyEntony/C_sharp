@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_01"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid x:Name="gRid">
+        Title="Calculator" Height="410" Width="251.164"
+        >
+    <!--<Grid x:Name="gRid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -25,5 +26,46 @@
             <Button  Content="Lime"  />
 
         </WrapPanel>
-    </Grid>
+    </Grid>-->
+    <StackPanel >
+        <TextBox Name="expression" HorizontalContentAlignment="Right" FontSize="15"/>
+        <TextBox Name="count" HorizontalContentAlignment="Right" FontSize="30" FontWeight="Bold"/>
+
+        <Grid Margin="0 5" x:Name="buttons">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+
+            <Button FontSize="20" Name="btnCE" Margin="2"> CE </Button>
+            <Button FontSize="20" Name="btnC" Grid.Column="1" Margin="2"> C </Button>
+            <Button FontSize="20" Name="btnDelete" Grid.Column="2" Margin="2"> &lt; </Button>
+            <Button FontSize="20" Name="btnDil" Grid.Column="3" Margin="2"> / </Button>
+            <Button FontSize="20" Name="btn7" Grid.Row="1" Margin="2"> 7 </Button>
+            <Button FontSize="20" Name="btn4" Grid.Row="2" Margin="2"> 4 </Button>
+            <Button FontSize="20" Name="btn1" Grid.Row="3" Margin="2"> 1 </Button>
+            <Button FontSize="20" Name="btnTochka" Grid.Row="7" Margin="2" > . </Button>
+            <Button FontSize="20" Name="btn8" Grid.Column="1" Grid.Row="1" Margin="2">8</Button>
+            <Button FontSize="20" Name="btn5" Grid.Column="1" Grid.Row="2" Margin="2">5</Button>
+            <Button FontSize="20" Name="btn2" Grid.Column="1" Grid.Row="3" Margin="2">2</Button>
+            <Button FontSize="20" Name="btn0" Grid.Column="1" Grid.Row="4" Margin="2">0</Button>
+            <Button FontSize="20" Name="btn9" Grid.Column="2" Grid.Row="1" Margin="2">9</Button>
+            <Button FontSize="20" Name="btn6" Grid.Column="2" Grid.Row="2" Margin="2">6</Button>
+            <Button FontSize="20" Name="btn3" Grid.Column="2" Grid.Row="3" Margin="2">3</Button>
+            <Button FontSize="20" Name="btnRes" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="3" Margin="2">=</Button>
+            <Button FontSize="20" Name="btnMnog" Grid.Column="3" Grid.Row="1" Margin="2">*</Button>
+            <Button FontSize="20" Name="btnMinus" Grid.Column="3" Grid.Row="2" Margin="2">-</Button>
+            <Button FontSize="20" Name="btnPlus" Grid.Column="3" Grid.Row="3" Margin="2">+</Button>
+            
+        </Grid>
+    </StackPanel>
 </Window>
