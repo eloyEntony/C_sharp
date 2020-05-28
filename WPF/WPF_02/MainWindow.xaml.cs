@@ -20,15 +20,12 @@ using System.Windows.Shapes;
  /* Paint:
     Режими малювання RadioButtons
             combobox для вибору ширини ліній
-    combobox для вибору кольору
+            combobox для вибору кольору
             кнопки зберегти\відкрити - реалізація за допомогою діалогових вікон
 */
 
 namespace WPF_02
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()

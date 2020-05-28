@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_02"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Paint DEMO" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="37*"/>
@@ -23,12 +23,12 @@
                 <RadioButton x:Name="paintRB" Checked="RadioButton_Checked" VerticalContentAlignment="Center" Width="60" Content="Paint"></RadioButton>
 
                 <Label FontSize="20" Padding="1" VerticalContentAlignment="Top" Height="35" >|</Label>
-                <ComboBox Name="cbColor" Margin="2" Width="50" SelectionChanged="ComboBox_SelectionChanged">
-                    <!--<StackPanel Orientation="Horizontal">-->
-                    <!--<Ellipse Fill="Green" Width="20" Height="20"/>-->
+                <ComboBox Name="cbColor" Margin="2" Width="70" SelectionChanged="ComboBox_SelectionChanged">
                     <Label>Green</Label>
-                    <!--</StackPanel>-->
                     <Label>Blue</Label>
+                    <Label>Red</Label>
+                    <Label>Yellow</Label>  
+                    <Label>Black</Label>                    
                 </ComboBox>
                 <ComboBox Name="cbSize" Margin="2" Width="50" SelectionChanged="cbSize_SelectionChanged">
                 </ComboBox>
