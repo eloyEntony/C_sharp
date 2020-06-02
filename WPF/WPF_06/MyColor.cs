@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace WPF_06
@@ -16,7 +10,15 @@ namespace WPF_06
         byte red;
         byte green;
         byte blue;
-        public SolidColorBrush newcolor {get;set;}
+        SolidColorBrush NewColor;
+        public SolidColorBrush newcolor
+        {
+            get => NewColor; set
+            {
+                NewColor = value;
+                OnNotify();
+            }
+        }
         public string Name { get; set; }
         public byte Alfa
         {
@@ -60,8 +62,8 @@ namespace WPF_06
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private void OnNotify([CallerMemberName] string propertyName="")
-        {            
+        private void OnNotify([CallerMemberName] string propertyName = "")
+        {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }

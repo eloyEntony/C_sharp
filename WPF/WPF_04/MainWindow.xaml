@@ -5,51 +5,88 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_04"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MediaPlayer" Height="450" Width="800">
     <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="307*"/>
             <RowDefinition Height="112*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65*"/>
+                <RowDefinition Height="12*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="295*"/>
                 <ColumnDefinition Width="101*"/>
             </Grid.ColumnDefinitions>
-            <MediaElement Margin="5" Grid.Column="0" Height="300" x:Name="video" LoadedBehavior="Manual" MediaOpened="video_MediaOpened"></MediaElement>
-            <Border Grid.Column="1" BorderThickness="2" BorderBrush="White" >
-                <StackPanel>
+            <MediaElement  Margin="5,5,5,2" Grid.Column="0" Height="300" x:Name="video" LoadedBehavior="Manual" MediaOpened="video_MediaOpened" Grid.RowSpan="2" ></MediaElement>
+            <Border Grid.Column="1" BorderThickness="2" BorderBrush="White" Grid.RowSpan="2">
+                <StackPanel >
                     <TextBlock Foreground="White" Margin="5"> PLAYLIST :</TextBlock>
                     <Border BorderThickness="1" BorderBrush="White" Margin="5" CornerRadius="5">
-                        <ListBox x:Name="playList" Background="Black" Foreground="White"></ListBox>
+                        <ListBox x:Name="playList" Background="Black" Foreground="White" 
+                                 SelectionChanged="playList_SelectionChanged">
+                        </ListBox>
                     </Border>
-                    <Button HorizontalAlignment="Right" Width="80" Height="25" Margin="5 0" Click="Open">Add file</Button>
                 </StackPanel>
-
             </Border>
+            <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Width="80" Height="25" Margin="5 0" Click="Open" Content="Add file">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <TextBlock>Add file to playlist</TextBlock>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
         </Grid>
         <Border Grid.Row="1" BorderThickness="2" BorderBrush="White">
-            <StackPanel   >
-
+            <StackPanel>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="43*"/>
                         <ColumnDefinition Width="353*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" x:Name="lblStatus" Margin="10 0" Foreground="White" Grid.ColumnSpan="2" VerticalContentAlignment="Center">00:00 / 00:00</Label>
-                    <Slider Grid.Column="1" x:Name="timelineSlider" Height="20" Margin="10" SmallChange="0.1" Minimum="0" Maximum="1" LargeChange="0.25"  LostMouseCapture="timelineSlider_LostMouseCapture" Grid.ColumnSpan="2" ></Slider>
+                    <Slider Grid.Column="1" x:Name="timelineSlider" Height="20" Margin="10"
+                            LostMouseCapture="timelineSlider_LostMouseCapture" 
+                            Grid.ColumnSpan="2" 
+                            Value="{Binding ElementName=video, Path=Position}">                            
+                    </Slider>
                 </Grid>
-
-
-
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                    <Button  Width="80" Height="25" Margin="10" Click="Open">Open</Button>
-                    <Button  Width="80" Height="25" Margin="10" Click="Play">Play</Button>
-                    <Button  Width="80" Height="25" Margin="10" Click="Stop">Stop</Button>
-                    <Button  Width="80" Height="25" Margin="10" Click="Mute">Mute</Button>
+                    <Button  Width="80" Height="25" Margin="10" Click="Play" Content="Play">
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Play</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button  Width="80" Height="25" Margin="10" Click="Stop" Content="Stop">
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Stop</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button  Width="80" Height="25" Margin="10" Click="Mute" Content="Mute">
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Mute</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
                     <TextBlock Height="25" Foreground="White">Volume</TextBlock>
                     <Slider  Width="250" Height="20" Margin="10" SmallChange="0.1" Minimum="0" Maximum="1" LargeChange="0.25" Value="{Binding ElementName=video, Path=Volume}" ></Slider>
-
+                    <TextBlock Height="25" Foreground="White">Speed</TextBlock>
+                    <Slider  Width="100" Height="20" Margin="10"  
+                             Minimum="0.25" Maximum="4"
+                             Value="{Binding ElementName=video, Path=SpeedRatio }" 
+                             TickPlacement="Both"
+                             IsSnapToTickEnabled="True">
+                        <Slider.Ticks>
+                            0.25, 0.5, 1, 2, 4
+                        </Slider.Ticks>
+                    </Slider>
                 </StackPanel>
             </StackPanel>
         </Border>

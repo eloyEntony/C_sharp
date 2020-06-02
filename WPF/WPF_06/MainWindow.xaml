@@ -39,45 +39,46 @@
                         IsEnabled="{Binding ElementName=alpha, Path=IsChecked}"
                         TickFrequency="1"
                         IsSnapToTickEnabled="True"
-                        Value="{Binding Alfa, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">                    
+                        Value="{Binding Alfa, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        ValueChanged="ValueChanged">
                 </Slider>
                 <Slider Name="slider2" Margin="4" Minimum="0" Maximum="255"
                         IsEnabled="{Binding ElementName=red, Path=IsChecked}"
                         TickFrequency="1" 
                         IsSnapToTickEnabled="True"
-                        Value="{Binding Red, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">                    
+                        Value="{Binding Red, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        ValueChanged="ValueChanged">
                 </Slider>
                 <Slider Name="slider3" Margin="4" Minimum="0" Maximum="255" 
                         IsEnabled="{Binding ElementName=green, Path=IsChecked}"
                         TickFrequency="1" 
                         Value="{Binding Green, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                        IsSnapToTickEnabled="True">                    
+                        IsSnapToTickEnabled="True"
+                        ValueChanged="ValueChanged">
                 </Slider>
                 <Slider Name="slider4" Margin="4" Minimum="0" Maximum="255" 
                         IsEnabled="{Binding ElementName=blue, Path=IsChecked}"
                         TickFrequency="1" 
                         Value="{Binding Blue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                        IsSnapToTickEnabled="True">                    
+                        IsSnapToTickEnabled="True"
+                        ValueChanged="ValueChanged">
                 </Slider>
             </StackPanel>
             <TextBlock Name="tbColor" Grid.Column="4" Margin="5 0" 
-                       Background="{Binding Newcolor, UpdateSourceTrigger=PropertyChanged}">                
+                       Background="{Binding newcolor, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
             </TextBlock>
         </Grid>
         <Button Name="btnAdd" Height="20" Width="70" HorizontalAlignment="Left" Margin="5 0" Click="Button_Click">Add</Button>
-        <ScrollViewer>
-            <ListBox Name="list" Margin="5">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Margin="10 0" Content="{Binding newcolor}" />
-                            <TextBlock Width="250" Margin="10 0" Background="{Binding newcolor}" />
-                            <Button HorizontalAlignment="Right" Height="20" Width="70" Click="Delete_button">Delete</Button>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </ScrollViewer>
-        
+        <ListBox Name="list" Margin="5" Height="160">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Margin="10 0" Content="{Binding newcolor}" />
+                        <TextBlock Width="250" Margin="10 0" Background="{Binding newcolor}" />
+                        <Button HorizontalAlignment="Right" Height="20" Width="70" Click="Delete_button">Delete</Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </StackPanel>
 </Window>
