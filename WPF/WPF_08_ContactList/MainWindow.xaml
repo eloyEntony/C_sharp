@@ -1,0 +1,121 @@
+﻿<Window x:Class="WPF_08_ContactList.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_08_ContactList"
+        xmlns:contact="clr-namespace:WPF_08_ContactList.ViewModel"
+        xmlns:command="clr-namespace:WPF_08_ContactList.ViewModel.Command"
+        xmlns:convert="clr-namespace:WPF_08_ContactList.ViewModel.Convertors"
+        xmlns:contactCard="clr-namespace:WPF_08_ContactList.CustomControl"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="302.981" Width="572.487"
+        Style="{DynamicResource WindowStyle}">
+    <Window.Resources>
+        <contact:ContactVM x:Key="contact"/>
+        <command:DeleteCommand x:Key="delete" VM="{StaticResource contact}"/>
+        <command:EditCommand x:Key="edit" VM="{StaticResource contact}"/>
+        <convert:ConvertorVisible x:Key="conv"/>
+        <command:ChangeLang x:Key="chanheLang"  VM="{StaticResource contact}" />
+        <command:ChangeThemes x:Key="changeTem" VM="{StaticResource contact}" />
+        <contactCard:ContactControl x:Key="card"/>
+
+        <command:SaveCommand x:Key="save" VM="{StaticResource contact}"/>
+        <command:CloseCommand x:Key="close" VM="{StaticResource contact}"/>
+
+    </Window.Resources>
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem x:Name="lang" Header="{DynamicResource lang}" >
+                <MenuItem x:Name="en" Header="{DynamicResource en}" Tag="0"
+                          Command="{StaticResource chanheLang}"
+                          CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                          />
+                <MenuItem x:Name="ua" Header="{DynamicResource ua}" Tag="1" 
+                          Command="{StaticResource chanheLang}"
+                          CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                          />
+            </MenuItem>
+            <MenuItem x:Name="themes" Header="{DynamicResource themes}">
+                <MenuItem x:Name="light" Tag="0" Header="{DynamicResource light}" 
+                          Command="{StaticResource changeTem}"
+                          CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                          />
+                <MenuItem x:Name="dark" Tag="1" Header="{DynamicResource dark}" 
+                          Command="{StaticResource changeTem}"
+                          CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                          />
+            </MenuItem>
+        </Menu>
+
+        <Grid DockPanel.Dock="Bottom" DataContext="{StaticResource contact}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="335*"/>
+                <ColumnDefinition Width="229*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <Label x:Name="contList" Content="{DynamicResource contList}" Style="{DynamicResource LabelStyle}"></Label>
+                <ListBox Margin="10" ItemsSource="{Binding Contacts}" SelectedItem="{Binding SelectContact}" Height="200" x:Name="List">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <!--<contactCard:ContactControl Contact="{Binding}" />-->
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding Name}" />
+                                <Button x:Name="btnEdit" Margin="1" Height="20" Width="50"  Content="{DynamicResource btnEdit}"
+                                    Style="{DynamicResource ButtonStyle}"
+                                    Command="{StaticResource edit}" 
+                                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
+                                </Button>
+                                <Button x:Name="btnDelete" Margin="1" Height="20" Width="50" Content="{DynamicResource btnDelete}"
+                                   Style="{DynamicResource ButtonStyle}"
+                                   Command="{StaticResource delete}" 
+                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Visibility="{Binding VisibleCreated, Converter={StaticResource conv}}">
+                <Label x:Name="lbName" Content="{DynamicResource lbName}" Style="{DynamicResource LabelStyle}"></Label>
+                <TextBox Text="{Binding Contact.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Style="{DynamicResource TextBoxStyle}"></TextBox>
+                <Label x:Name="lbSurname" Content="{DynamicResource lbSurname}" Style="{DynamicResource LabelStyle}"></Label>
+                <TextBox Text="{Binding Contact.Surname, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Style="{DynamicResource TextBoxStyle}"></TextBox>
+                <Label x:Name="lbPhone" Content="{DynamicResource lbPhone}" Style="{DynamicResource LabelStyle}"></Label>
+                <TextBox Text="{Binding Contact.Number, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Style="{DynamicResource TextBoxStyle}"></TextBox>
+                <Button x:Name="btnAdd" 
+                        Style="{DynamicResource ButtonStyle}"
+                        Command="{Binding AddCommand}" 
+                        CommandParameter="{Binding Contact}" 
+                        Content="{DynamicResource btnAdd}">
+                </Button>
+                <Button x:Name="btnClear" 
+                        Style="{DynamicResource ButtonStyle}"
+                        Command="{Binding ClearCommand}" 
+                        Content="{DynamicResource btnClear}">
+                </Button>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Visibility="{Binding VisibleEdit, Converter={StaticResource conv}}">
+                <Label Content="{DynamicResource lbName}"    Style="{DynamicResource LabelStyle}"></Label>
+                <TextBox Text="{Binding TmpContact.Name}"    Style="{DynamicResource TextBoxStyle}" ></TextBox>
+                <Label Content="{DynamicResource lbSurname}" Style="{DynamicResource LabelStyle}"></Label>
+                <TextBox Text="{Binding TmpContact.Surname}" IsEnabled="False"  Style="{DynamicResource TextBoxStyle}"></TextBox>
+                <Label Content="{DynamicResource lbPhone}"   Style="{DynamicResource LabelStyle}"></Label>
+                <TextBox Text="{Binding TmpContact.Number}"  Style="{DynamicResource TextBoxStyle}"></TextBox>
+                <Button x:Name="btnSave"
+                        Style="{DynamicResource ButtonStyle}"
+                        Command="{Binding SaveCommand}" 
+                        CommandParameter="{Binding Contact}" 
+                        Content="{DynamicResource btnSave}">
+                </Button>
+                <Button x:Name="btnClose" 
+                        Style="{DynamicResource ButtonStyle}"
+                        Command="{Binding CloseCommand}"  
+                        Content="{DynamicResource btnClose}">
+                </Button>
+                        <!--CommandParameter="{Binding TmpContact}"-->
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>

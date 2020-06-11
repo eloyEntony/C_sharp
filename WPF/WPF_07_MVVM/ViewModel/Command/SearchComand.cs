@@ -10,11 +10,11 @@ namespace WPF_07_MVVM.ViewModel.Command
     public class SearchComand : ICommand
     {
         WeatherVM VM { get; set; }
+
         public SearchComand(WeatherVM vm)
         {
             VM = vm;
         }
-
         public event EventHandler CanExecuteChanged
         {
             add
@@ -26,6 +26,7 @@ namespace WPF_07_MVVM.ViewModel.Command
                 CommandManager.RequerySuggested -= value;
             }
         }
+
         public bool CanExecute(object parameter)
         {
             return !String.IsNullOrEmpty(parameter as string);
