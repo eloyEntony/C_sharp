@@ -4,32 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_08_ContactList.CustomControl"
-             mc:Ignorable="d" FontSize="14" RenderTransformOrigin="0.5,0.5" BorderThickness="0" Height="100.843" Width="312.206">
-    <Border CornerRadius="20" BorderBrush="Black" BorderThickness="2" Background="#FFC0E226">
-        <Grid Margin="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="109*"/>
-                <ColumnDefinition Width="199*"/>
-            </Grid.ColumnDefinitions>
-            <Label  Content="Name " FontWeight="Bold"></Label>
-            <StackPanel Orientation="Horizontal" Grid.Column="1">
-                <Label x:Name="lbName" Content="BOB" ></Label>
-                <Label x:Name="lbSurname" Content="BOB" ></Label>
+             mc:Ignorable="d" FontSize="14" RenderTransformOrigin="0.5,0.5" BorderThickness="0" Height="59.343" Width="200">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="79*" />
+            <ColumnDefinition Width="121*" />
+        </Grid.ColumnDefinitions>
+        <Label  Content="Name " FontWeight="Bold" VerticalContentAlignment="Center"/>
+
+        <Border Grid.Column="1" BorderThickness="1,0,0,0" BorderBrush="Black">
+            <StackPanel Orientation="Horizontal" >
+                <Label x:Name="lbName" Content="BOB" VerticalContentAlignment="Center"/>
+                <Label x:Name="lbSurname" Content="BOB" VerticalContentAlignment="Center"/>
             </StackPanel>
-            <Label Grid.Row="1" Content="Telephone " FontWeight="Bold"></Label>
-            <Label Grid.Column="1" Grid.Row="1" x:Name="lbPhone" Content="BOB" ></Label>
+        </Border>
 
-            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-                <Button Width="100" Height="23" Margin="5 0" Content="Edit"></Button>
-                <Button Width="100" Height="23" Margin="5 0" Content="Delete"></Button>
-            </StackPanel>
+        <Label Grid.Row="1" Content="Telephone " FontWeight="Bold" VerticalContentAlignment="Center"/>
 
-
-        </Grid>
-    </Border>
+        <Border Grid.Column="1" Grid.Row="1" BorderThickness="1,0,0,0" BorderBrush="Black">
+            <Label x:Name="lbPhone" Content="BOB" VerticalContentAlignment="Center"/>
+        </Border>
+    </Grid>
 </UserControl>

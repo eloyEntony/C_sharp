@@ -42,7 +42,6 @@ namespace WPF_08_ContactList.ViewModel.Command
                     VM.Edit(button);
                 }
             }
-            //VM.Edit();
         }
     }
 }

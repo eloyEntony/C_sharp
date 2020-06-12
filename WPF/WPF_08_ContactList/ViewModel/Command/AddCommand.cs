@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using WPF_08_ContactList.Model;
 
@@ -11,7 +7,6 @@ namespace WPF_08_ContactList.ViewModel.Command
     public class AddCommand : ICommand
     {
         ContactVM VM { get; set; }
-
         public AddCommand(ContactVM vm)
         {
             VM = vm;
@@ -28,7 +23,6 @@ namespace WPF_08_ContactList.ViewModel.Command
                 CommandManager.RequerySuggested -= value;
             }
         }
-
         public bool CanExecute(object parameter)
         {
             Contact contact = (parameter as Contact);
@@ -38,13 +32,18 @@ namespace WPF_08_ContactList.ViewModel.Command
                     try
                     {
                         int tmpNumber = System.Convert.ToInt32(contact.Number);
+                        for (int i = 0; i < VM.Contacts.Count; i++)
+                        {
+                            if (VM.Contacts[i].Number == tmpNumber.ToString())
+                                return false;
+                        }
                         return true;
                     }
                     catch
                     {
                         return false;
                     }
-                               
+
                 }
             return false;
         }

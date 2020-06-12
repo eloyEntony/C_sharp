@@ -1,12 +1,7 @@
-﻿using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using WPF_08_ContactList.Model;
@@ -26,12 +21,12 @@ namespace WPF_08_ContactList.ViewModel
         int indexT = 0;
         int indexL = 1;
 
+        public ObservableCollection<Contact> Contacts { get; set; } = new ObservableCollection<Contact>();
         public Contact TmpContact
         {
             get => tmpContact;
             set { tmpContact = value; OnNotify(); }
         }
-        public ObservableCollection<Contact> Contacts { get; set; } = new ObservableCollection<Contact>();
         public Contact Contact
         {
             get => contact;
@@ -109,14 +104,15 @@ namespace WPF_08_ContactList.ViewModel
 
         public void Edit(Button button)
         {
-            //TmpContact = new Contact { Name = SelectContact.Name, Surname = SelectContact.Surname, Number = SelectContact.Number };
-            //Contact = new Contact();
-            //ChangeVisible();
-            if ((Contact)button.DataContext != null)
-                TmpContact = new Contact { Name =((Contact)button.DataContext).Name, Surname = ((Contact)button.DataContext).Surname, Number = ((Contact)button.DataContext).Number };
-
-            //Contact = new Contact();
-            ChangeVisible();
+            for (int i = 0; i < Contacts.Count; i++)
+            {
+                if (Contacts[i] == (Contact)button.DataContext)
+                {
+                    TmpContact = new Contact { Name = ((Contact)button.DataContext).Name, Surname = ((Contact)button.DataContext).Surname, Number = ((Contact)button.DataContext).Number };
+                    Contact = new Contact();
+                    ChangeVisible();
+                }
+            }
         }
 
         public void Delete(Button button)
@@ -128,7 +124,7 @@ namespace WPF_08_ContactList.ViewModel
         {
             for (int i = 0; i < Contacts.Count; i++)
             {
-                if (SelectContact == Contacts[i])
+                if (Contacts[i].Surname == TmpContact.Surname)
                     Contacts[i] = TmpContact;
             }
             Contact = new Contact();
@@ -147,7 +143,7 @@ namespace WPF_08_ContactList.ViewModel
             VisibleEdit = !VisibleEdit;
             VisibleCreated = !VisibleCreated;
         }
-       
+
         public void ChangeTheme(MenuItem menuItem)
         {
             indexT = Convert.ToInt32(menuItem.Tag);
@@ -158,7 +154,7 @@ namespace WPF_08_ContactList.ViewModel
             Application.Current.Resources.MergedDictionaries.Add((ResourceDictionary)Application.LoadComponent(new Uri("Properties/" + langArr[indexL] + ".xaml", UriKind.Relative)));
 
         }
-        
+
         public void ChengeLang(MenuItem menuItem)
         {
             indexL = Convert.ToInt32(menuItem.Tag);

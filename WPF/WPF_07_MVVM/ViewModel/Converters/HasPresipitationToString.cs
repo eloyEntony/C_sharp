@@ -17,10 +17,10 @@ namespace WPF_07_MVVM.ViewModel
             switch (presipitations)
             {
                 case false:
-                    result = "Precipitation: no";
+                    result = "No";
                     break;
                 case true:
-                    result = "Precipitation: yes";
+                    result = "Yes";
                     break;
             }
 

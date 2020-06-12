@@ -9,7 +9,7 @@
         xmlns:convert="clr-namespace:WPF_08_ContactList.ViewModel.Convertors"
         xmlns:contactCard="clr-namespace:WPF_08_ContactList.CustomControl"
         mc:Ignorable="d"
-        Title="MainWindow" Height="302.981" Width="572.487"
+        Title="MainWindow" Height="306.86" Width="553.451"
         Style="{DynamicResource WindowStyle}">
     <Window.Resources>
         <contact:ContactVM x:Key="contact"/>
@@ -19,10 +19,8 @@
         <command:ChangeLang x:Key="chanheLang"  VM="{StaticResource contact}" />
         <command:ChangeThemes x:Key="changeTem" VM="{StaticResource contact}" />
         <contactCard:ContactControl x:Key="card"/>
-
         <command:SaveCommand x:Key="save" VM="{StaticResource contact}"/>
         <command:CloseCommand x:Key="close" VM="{StaticResource contact}"/>
-
     </Window.Resources>
 
     <DockPanel>
@@ -59,20 +57,25 @@
                 <ListBox Margin="10" ItemsSource="{Binding Contacts}" SelectedItem="{Binding SelectContact}" Height="200" x:Name="List">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <!--<contactCard:ContactControl Contact="{Binding}" />-->
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="{Binding Name}" />
-                                <Button x:Name="btnEdit" Margin="1" Height="20" Width="50"  Content="{DynamicResource btnEdit}"
-                                    Style="{DynamicResource ButtonStyle}"
-                                    Command="{StaticResource edit}" 
-                                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
-                                </Button>
-                                <Button x:Name="btnDelete" Margin="1" Height="20" Width="50" Content="{DynamicResource btnDelete}"
-                                   Style="{DynamicResource ButtonStyle}"
-                                   Command="{StaticResource delete}" 
-                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
-                                </Button>
-                            </StackPanel>
+                            <Border BorderBrush="Black" BorderThickness="2" Background="#FFC0E226">
+                                <StackPanel Orientation="Horizontal">
+                                    <contactCard:ContactControl Contact="{Binding}" />
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Button x:Name="btnEdit"  Content="{DynamicResource btnEdit}" Grid.Row="0" Padding="5" BorderThickness="1,0,0,1" BorderBrush="Black"                              
+                                           Command="{StaticResource edit}" 
+                                           CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
+                                        </Button>
+                                        <Button x:Name="btnDelete" Content="{DynamicResource btnDelete}" Grid.Row="1"  Padding="5"  BorderThickness="1,0,0,0" BorderBrush="Black"                                          
+                                           Command="{StaticResource delete}" 
+                                           CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
+                                        </Button>
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
@@ -114,7 +117,6 @@
                         Command="{Binding CloseCommand}"  
                         Content="{DynamicResource btnClose}">
                 </Button>
-                        <!--CommandParameter="{Binding TmpContact}"-->
             </StackPanel>
         </Grid>
     </DockPanel>

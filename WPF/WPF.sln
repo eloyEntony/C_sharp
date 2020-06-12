@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_08_ContactList", "WPF_0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_10_Exam", "WPF_10_Exam\WPF_10_Exam.csproj", "{D52F0B75-48B8-4B12-AEB9-646A2FAA368A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_09_RegisterForm", "WPF_09_RegisterForm\WPF_09_RegisterForm.csproj", "{19CDCF76-36FC-4EC9-A009-5E5D2707A45C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{D52F0B75-48B8-4B12-AEB9-646A2FAA368A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D52F0B75-48B8-4B12-AEB9-646A2FAA368A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D52F0B75-48B8-4B12-AEB9-646A2FAA368A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19CDCF76-36FC-4EC9-A009-5E5D2707A45C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19CDCF76-36FC-4EC9-A009-5E5D2707A45C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19CDCF76-36FC-4EC9-A009-5E5D2707A45C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19CDCF76-36FC-4EC9-A009-5E5D2707A45C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
