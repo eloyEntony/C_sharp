@@ -8,6 +8,65 @@
         Title="MainWindow" Height="369.024" Width="673.17" FontFamily="Corbel Light">
 
     <Window.Resources>
+        <local:Client x:Key="client"/>
+
+        <Style TargetType="Label" x:Key="labelBTN">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Label">
+                                <Border BorderThickness="0" CornerRadius="20" Background="Black">
+                                    <ContentPresenter Content="{TemplateBinding Content}" 
+                                                      HorizontalAlignment="Center"                                              
+                                                      VerticalAlignment="Center" 
+                                                      ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+
+            <Style.Setters>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Width" Value="150"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Label">
+                            <Border CornerRadius="20" BorderThickness="0">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <LinearGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                                <RotateTransform Angle="90" CenterY="0.5" CenterX="0.5"/>
+                                                <TranslateTransform/>
+                                            </TransformGroup>
+                                        </LinearGradientBrush.RelativeTransform>
+                                        <GradientStop Color="Black" Offset="0"/>
+                                        <GradientStop Color="#FFBC6CA5" Offset="1"/>
+                                        <GradientStop Color="#FF3A62BC"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter Margin="{TemplateBinding Padding}"  
+                                                  Content="{TemplateBinding Content}" 
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+        </Style>
+        
         <Style TargetType="ToggleButton" x:Key="buttonPress">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -66,13 +125,30 @@
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Margin" Value="50,20,0,20"/>
-                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Border Background="White" >
+                                    <StackPanel  VerticalAlignment="Center" Margin="0,20,0,0">
+                                        <Label Content="Sign Up" Foreground="Black" FontSize="30" Margin="10 0"/>
+                                        <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." FontSize="10" Margin="15 10" Foreground="Black" TextWrapping="Wrap" TextAlignment="Left"/>
+                                        <Label Content="Sign Up" Style="{StaticResource labelBTN}" Margin="15 30" HorizontalAlignment="Left"/>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Margin" Value="50,20,0,20"/>
+                    <!--<Setter Property="Background" Value="White"/>-->
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate>
                                 <Border Background="White" >
                                     <StackPanel>
-                                        <StackPanel VerticalAlignment="Center" Margin="0,50,0,0">
+                                        <!--<StackPanel VerticalAlignment="Center" Margin="0,50,0,0">
                                             <StackPanel.Style>
                                                 <Style TargetType="StackPanel">
                                                     <Style.Triggers>
@@ -87,11 +163,12 @@
                                             </StackPanel.Style>
                                             <Label Content="Sign Up" Foreground="Black" FontSize="30" Margin="10 0"/>
                                             <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." FontSize="10" Margin="15 10" Foreground="Black" TextWrapping="Wrap" TextAlignment="Left"/>
+                                            --><!--<Label Content="Sign Up" Style="{StaticResource labelBTN}"></Label>--><!--
                                             <ToggleButton Style="{StaticResource buttonPress}"  x:Name="tbRegister" Background="Transparent" BorderThickness="0" Margin="15 30" HorizontalAlignment="Left" Content="Sign Up"/>
-                                        </StackPanel>
+                                        </StackPanel>-->
 
                                         <StackPanel  VerticalAlignment="Center" Margin="0,20,0,0">
-                                            <StackPanel.Style>
+                                            <!--<StackPanel.Style>
                                                 <Style TargetType="StackPanel">
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding ElementName=tbRegister, Path=IsChecked}" Value="False">
@@ -102,7 +179,7 @@
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
-                                            </StackPanel.Style>
+                                            </StackPanel.Style>-->
 
                                             <Label Content="Sing Up" Foreground="Black" FontSize="30" Margin="30 0"/>
 
@@ -119,16 +196,16 @@
                                                 <Label Grid.Row="2" Content="LOGIN" HorizontalContentAlignment="Left"/>
                                                 <Label Grid.Row="4" Content="PASSWORD" HorizontalContentAlignment="Left"/>
                                                 <Border Grid.Row="1" Grid.Column="1" BorderThickness="1" CornerRadius="10" BorderBrush="Black" Height="25" >
-                                                    <TextBox x:Name="tbEmail_UP" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Margin="5 0"/>
+                                                    <TextBox x:Name="tbEmail_UP" Text="{Binding client.Email, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Margin="5 0"/>
                                                 </Border>
                                                 <Border Grid.Row="3" Grid.Column="1" BorderThickness="1" CornerRadius="10" BorderBrush="Black" Height="25">
-                                                    <TextBox x:Name="tbLogin_UP" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Margin="5 0"/>
+                                                    <TextBox x:Name="tbLogin_UP" Text="{Binding client.Login}" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Margin="5 0"/>
                                                 </Border>
-                                                <Border Grid.Row="5" Grid.Column="1" BorderThickness="1" CornerRadius="10" BorderBrush="Black" Height="25">
-                                                    <TextBox x:Name="tbPass_UP" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Margin="5 0"/>
+                                                <Border Grid.Row="5" Grid.Column="1"  BorderThickness="1" CornerRadius="10" BorderBrush="Black" Height="25">
+                                                    <TextBox x:Name="tbPass_UP" Text="{Binding client.Pass}" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Margin="5 0"/>
                                                 </Border>
                                             </Grid>
-                                            <ToggleButton Click="SingUPReg_Click" Style="{StaticResource buttonPress}" Height="35" Background="Transparent" BorderThickness="0" Margin="30 15" HorizontalAlignment="Center" Content="Sign Up"/>
+                                            <ToggleButton Style="{StaticResource buttonPress}" Height="35" Background="Transparent" BorderThickness="0" Margin="30 15" HorizontalAlignment="Center" Content="Sign Up"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </Border>
@@ -144,12 +221,13 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate>
-                            <Border Background="#37265a" >
+                            <Border Background="#37265a">
                                 <StackPanel VerticalAlignment="Center">
                                     <Label Content="Sign Up" Foreground="White" FontSize="30" Margin="10 0"/>
                                     <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
                                                FontSize="10" Margin="15 10" Foreground="White" TextWrapping="Wrap" TextAlignment="Left"/>
-                                    <ToggleButton Style="{StaticResource buttonPress}" x:Name="tbRegister" Background="Transparent" BorderThickness="0" Margin="15 30" HorizontalAlignment="Left" Content="Sign Up"/>
+                                    <Label Content="Sign Up" Style="{StaticResource labelBTN}" Margin="15 30" HorizontalAlignment="Left" ></Label>
+                                    <!--<ToggleButton Style="{StaticResource buttonPress}" x:Name="tbRegister" Background="Transparent" BorderThickness="0" Margin="15 30" HorizontalAlignment="Left" Content="Sign Up"/>-->
                                 </StackPanel>
                             </Border>
                         </ControlTemplate>
@@ -157,7 +235,7 @@
                 </Setter>
             </Style.Setters>
         </Style>
-        
+
         <Style TargetType="ToggleButton" x:Key="singIn">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -207,7 +285,7 @@
                                                     <RowDefinition/>
                                                     <RowDefinition/>
                                                     <RowDefinition/>
-                                                    <RowDefinition/>                                                    
+                                                    <RowDefinition/>
                                                 </Grid.RowDefinitions>
                                                 <Label Grid.Row="0" Content="LOGIN" HorizontalContentAlignment="Left"/>
                                                 <Label Grid.Row="2" Content="PASSWORD" HorizontalContentAlignment="Left"/>
@@ -216,7 +294,7 @@
                                                 </Border>
                                                 <Border Grid.Row="3" Grid.Column="1" BorderThickness="1" CornerRadius="10" BorderBrush="Black" Height="25">
                                                     <TextBox BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Margin="5 0"/>
-                                                </Border>                                                
+                                                </Border>
                                             </Grid>
                                             <ToggleButton Style="{StaticResource buttonPress}" Height="35" Background="Transparent" BorderThickness="0" Margin="30 15" HorizontalAlignment="Center" Content="Sign Up"/>
                                             <Label Margin="0 -10" Content="Forgot Your Password?" FontStyle="Italic" HorizontalContentAlignment="Center"/>
@@ -248,6 +326,9 @@
                 </Setter>
             </Style.Setters>
         </Style>
+
+
+
     </Window.Resources>
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -265,12 +346,12 @@
         </LinearGradientBrush>
     </Window.Background>
 
-    <Grid >
+    <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ToggleButton x:Name="tbRegister" Style="{StaticResource singUp}"/>
+        <ToggleButton x:Name="tbRegisters" Click="tbRegister_Click" Style="{StaticResource singUp}"/>
         <ToggleButton x:Name="tbLogin" Grid.Column="1" Style="{StaticResource singIn}"/>
     </Grid>
 </Window>
