@@ -25,11 +25,9 @@ namespace WPF_09_RegisterForm
     public partial class MainWindow : Window
     {
         public ObservableCollection<Client> clients { get; set; } = new ObservableCollection<Client>();
-        Client client;
         public MainWindow()
         {
             InitializeComponent();
-            client = new Client();
         }
 
         Client user = new Client();
@@ -50,11 +48,29 @@ namespace WPF_09_RegisterForm
                             var rows = grid.Children.Cast<UIElement>().First(el => Grid.GetRow(el) == row);
                             TextBox name = (TextBox)VisualTreeHelper.GetChild(rows, 0);
                             Title += name.Text + " ";
+
+                            switch (row)
+                            {
+                                case 1:
+                                    user.Email = name.Text;
+                                    break;
+                                case 2:
+                                    user.Login = name.Text;
+                                    break;
+                                case 3:
+                                    user.Pass = name.Text;
+                                    break;
+                            }
                         }
                     }
                 }
             }
-        }    
+        }
+
+        private void tbRegister_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 
@@ -64,6 +80,8 @@ namespace WPF_09_RegisterForm
     public class Client: INotifyPropertyChanged
     {
         private string email;
+        private string login;
+        private string pass;
         public string Email 
         { 
             get => email;

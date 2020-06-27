@@ -123,7 +123,7 @@
 
         <Style TargetType="ToggleButton" x:Key="singUp">
             <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
+                <!--<Trigger Property="" Value="True">
                     <Setter Property="Margin" Value="50,20,0,20"/>
                     <Setter Property="Template">
                         <Setter.Value>
@@ -132,23 +132,23 @@
                                     <StackPanel  VerticalAlignment="Center" Margin="0,20,0,0">
                                         <Label Content="Sign Up" Foreground="Black" FontSize="30" Margin="10 0"/>
                                         <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." FontSize="10" Margin="15 10" Foreground="Black" TextWrapping="Wrap" TextAlignment="Left"/>
-                                        <Label Content="Sign Up" Style="{StaticResource labelBTN}" Margin="15 30" HorizontalAlignment="Left"/>
+                                        --><!--<Label Content="Sign Up" Style="{StaticResource labelBTN}" Margin="15 30" HorizontalAlignment="Left"/>--><!--
                                     </StackPanel>
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
-                </Trigger>
-                
-                <Trigger Property="IsChecked" Value="True">
+                </Trigger>-->
+
+                <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Margin" Value="50,20,0,20"/>
-                    <!--<Setter Property="Background" Value="White"/>-->
+                    <Setter Property="Background" Value="White"/>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate>
                                 <Border Background="White" >
                                     <StackPanel>
-                                        <!--<StackPanel VerticalAlignment="Center" Margin="0,50,0,0">
+                                        <StackPanel VerticalAlignment="Center" Margin="0,50,0,0">
                                             <StackPanel.Style>
                                                 <Style TargetType="StackPanel">
                                                     <Style.Triggers>
@@ -163,12 +163,12 @@
                                             </StackPanel.Style>
                                             <Label Content="Sign Up" Foreground="Black" FontSize="30" Margin="10 0"/>
                                             <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." FontSize="10" Margin="15 10" Foreground="Black" TextWrapping="Wrap" TextAlignment="Left"/>
-                                            --><!--<Label Content="Sign Up" Style="{StaticResource labelBTN}"></Label>--><!--
+                                            <!--<Label Content="Sign Up" Style="{StaticResource labelBTN}"></Label>-->
                                             <ToggleButton Style="{StaticResource buttonPress}"  x:Name="tbRegister" Background="Transparent" BorderThickness="0" Margin="15 30" HorizontalAlignment="Left" Content="Sign Up"/>
-                                        </StackPanel>-->
+                                        </StackPanel>
 
                                         <StackPanel  VerticalAlignment="Center" Margin="0,20,0,0">
-                                            <!--<StackPanel.Style>
+                                            <StackPanel.Style>
                                                 <Style TargetType="StackPanel">
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding ElementName=tbRegister, Path=IsChecked}" Value="False">
@@ -179,7 +179,7 @@
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
-                                            </StackPanel.Style>-->
+                                            </StackPanel.Style>
 
                                             <Label Content="Sing Up" Foreground="Black" FontSize="30" Margin="30 0"/>
 
@@ -199,13 +199,13 @@
                                                     <TextBox x:Name="tbEmail_UP" Text="{Binding client.Email, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Margin="5 0"/>
                                                 </Border>
                                                 <Border Grid.Row="3" Grid.Column="1" BorderThickness="1" CornerRadius="10" BorderBrush="Black" Height="25">
-                                                    <TextBox x:Name="tbLogin_UP" Text="{Binding client.Login}" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Margin="5 0"/>
+                                                    <TextBox x:Name="tbLogin_UP" Text="{Binding client.Login, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Margin="5 0"/>
                                                 </Border>
                                                 <Border Grid.Row="5" Grid.Column="1"  BorderThickness="1" CornerRadius="10" BorderBrush="Black" Height="25">
-                                                    <TextBox x:Name="tbPass_UP" Text="{Binding client.Pass}" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Margin="5 0"/>
+                                                    <TextBox x:Name="tbPass_UP" Text="{Binding client.Pass, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Margin="5 0"/>
                                                 </Border>
                                             </Grid>
-                                            <ToggleButton Style="{StaticResource buttonPress}" Height="35" Background="Transparent" BorderThickness="0" Margin="30 15" HorizontalAlignment="Center" Content="Sign Up"/>
+                                            <ToggleButton Style="{StaticResource buttonPress}"  Height="35" Background="Transparent" BorderThickness="0" Margin="30 15" HorizontalAlignment="Center" Content="Sign Up"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </Border>
@@ -226,8 +226,8 @@
                                     <Label Content="Sign Up" Foreground="White" FontSize="30" Margin="10 0"/>
                                     <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
                                                FontSize="10" Margin="15 10" Foreground="White" TextWrapping="Wrap" TextAlignment="Left"/>
-                                    <Label Content="Sign Up" Style="{StaticResource labelBTN}" Margin="15 30" HorizontalAlignment="Left" ></Label>
-                                    <!--<ToggleButton Style="{StaticResource buttonPress}" x:Name="tbRegister" Background="Transparent" BorderThickness="0" Margin="15 30" HorizontalAlignment="Left" Content="Sign Up"/>-->
+                                    <!--<Label Content="Sign Up" Style="{StaticResource labelBTN}" Margin="15 30" HorizontalAlignment="Left" ></Label>-->
+                                    <ToggleButton Style="{StaticResource buttonPress}" x:Name="tbRegister" Background="Transparent" BorderThickness="0" Margin="15 30" HorizontalAlignment="Left" Content="Sign Up"/>
                                 </StackPanel>
                             </Border>
                         </ControlTemplate>
