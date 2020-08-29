@@ -1,22 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 //Приєднаний режим Ado.Net
 
@@ -40,18 +27,19 @@ namespace ado_01
         string connectionStringToWindows = @"Data Source=(localdb)\MSSQLLocalDB;
                                                     Initial Catalog=master;
                                                     Integrated Security=True;";
-        string connectionStringToServer = @"    Initial Catalog = master;
-                                                Integrated Security=false;";
-
+        string connectionStringToServer = @"Initial Catalog = master; Integrated Security=false;";
+        string db;
 
         ObservableCollection<string> list = new ObservableCollection<string>();
         ObservableCollection<string> database = new ObservableCollection<string>();
+        ObservableCollection<string> listInfo = new ObservableCollection<string>();
         int mode;
         SqlConnection connection = new SqlConnection();
         public MainWindow()
         {
-            InitializeComponent();        
+            InitializeComponent();
             List.ItemsSource = list;
+            TableInfo.ItemsSource = listInfo;
         }
 
         private void cb_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -68,13 +56,13 @@ namespace ado_01
         {
             switch (mode)
             {
-                case 0:                    
+                case 0:
                     connection.ConnectionString = connectionStringToWindows;
                     break;
 
                 case 1:
                     connection.ConnectionString = $"Data Source={adress.Text};" + connectionStringToServer +
-                        $"User ID= {name.Text}; Password={pass.Text};";     
+                        $"User ID= {name.Text}; Password={pass.Text};";
                     break;
             }
             connection.Open();
@@ -87,12 +75,7 @@ namespace ado_01
             {
                 using (SqlCommand cmd = new SqlCommand("SELECT name from sys.databases", connection))
                 {
-                    using (IDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                            cbDataBase.Items.Add(dr[0].ToString());
-
-                    }
+                    IAsyncResult res = cmd.BeginExecuteReader(DataBaseCallBack, cmd);
                 }
             }
             catch (SqlException ex)
@@ -100,6 +83,15 @@ namespace ado_01
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void DataBaseCallBack(IAsyncResult ar)
+        {
+            var res = (SqlCommand)ar.AsyncState;
+            var reader = res.EndExecuteReader(ar);
+            while (reader.Read())
+                Dispatcher.Invoke(() => { cbDataBase.Items.Add(reader[0].ToString()); });
+            reader.Close();
         }
 
         private void AllTables(string db)
@@ -122,78 +114,82 @@ namespace ado_01
 
         private void ReaderCallBack(IAsyncResult ar)
         {
+            try
             {
-                try
-                {
-                    var res = (SqlCommand)ar.AsyncState;
-                    var rd = res.EndExecuteReader(ar);
-                    Thread.Sleep(3000);
-                    if (rd.HasRows)
-                        while (rd.Read())
-                            Dispatcher.Invoke(() => { list.Add(rd[0].ToString()); }); 
-                    rd.Close();
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                var res = (SqlCommand)ar.AsyncState;
+                var rd = res.EndExecuteReader(ar);
+                Thread.Sleep(3000);
+                if (rd.HasRows)
+                    while (rd.Read())
+                        Dispatcher.Invoke(() => { list.Add(rd[0].ToString()); });
+                rd.Close();
             }
-
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-
-        string db;
         private void cbDataBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             db = cbDataBase.SelectedItem.ToString();
             AllTables(db);
         }
-
-
         private void GetData(string table)
         {
             try
             {
-                string tmp = "";
                 using (SqlCommand command = new SqlCommand($"select * from {table}", connection))
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            do
-                            {
-                                int line = 0;
-                                while (reader.Read())
-                                {
-                                    if (line == 0)
-                                    {
-                                        for (int i = 0; i < reader.FieldCount; i++)
-                                            tmp += $"[{reader.GetName(i)}]\t";
-                                        TableInfo.Items.Add(tmp);
-                                    }
-                                    line++;
-                                    tmp = "";
-                                    for (int i = 0; i < reader.FieldCount; i++)
-                                        tmp += $"[{reader.GetValue(i)}]\t";
-                                    TableInfo.Items.Add(tmp);
-                                }
-                            }
-                            while (reader.NextResult());
-                        }
-                    }
+                    IAsyncResult res = command.BeginExecuteReader(GetDataCallBack, command);
                 }
             }
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
 
+
+        private void GetDataCallBack(IAsyncResult ar)
+        {
+            string tmp = "";
+            var res = (SqlCommand)ar.AsyncState;
+            var rd = res.EndExecuteReader(ar);
+
+            if (rd.HasRows)
+            {
+                do
+                {
+                    int line = 0;
+                    while (rd.Read())
+                    {
+                        if (line == 0)
+                        {
+                            for (int i = 0; i < rd.FieldCount; i++)
+                                tmp += $"[{rd.GetName(i)}]\t";
+                            Dispatcher.Invoke(() => { listInfo.Add(tmp); });
+                        }
+                        line++;
+                        tmp = "";
+                        for (int i = 0; i < rd.FieldCount; i++)
+                            tmp += $"[{rd.GetValue(i)}]\t";
+                        Dispatcher.Invoke(() => { listInfo.Add(tmp); });
+                    }
+                }
+                while (rd.NextResult());
+            }
+            rd.Close();
         }
 
         private void List_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TableInfo.Items.Clear();
-            GetData(List.SelectedItem.ToString());
+            try
+            {
+                listInfo.Clear();
+                GetData(List.SelectedItem.ToString());
+            }
+            catch (Exception ex)
+            { }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

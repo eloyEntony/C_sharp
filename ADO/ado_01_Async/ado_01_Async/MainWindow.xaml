@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ado_01"
         mc:Ignorable="d"
-        Title="MainWindow" Height="259.199" Width="739.464" Closing="Window_Closing">
+        Title="DataBase Connect" Height="271.255" Width="739.464" Closing="Window_Closing">
     <Window.Resources>
         <ControlTemplate TargetType="Button" x:Key="singUP">
             <Border CornerRadius="20" Margin="10" Width="150" Height="40" BorderThickness="0">
