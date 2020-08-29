@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ado_05_Linq", "ado_05_Linq\ado_05_Linq.csproj", "{723636CE-A4D5-48DA-A9BD-24BBF930C4C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqToSQL", "LinqToSQL\LinqToSQL.csproj", "{B512BE1A-D71B-40E4-8451-C36CB60E48AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{723636CE-A4D5-48DA-A9BD-24BBF930C4C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{723636CE-A4D5-48DA-A9BD-24BBF930C4C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{723636CE-A4D5-48DA-A9BD-24BBF930C4C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{723636CE-A4D5-48DA-A9BD-24BBF930C4C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B512BE1A-D71B-40E4-8451-C36CB60E48AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B512BE1A-D71B-40E4-8451-C36CB60E48AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B512BE1A-D71B-40E4-8451-C36CB60E48AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B512BE1A-D71B-40E4-8451-C36CB60E48AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E96869F0-067A-4C5B-8C32-E46FFEB2781E}
+	EndGlobalSection
+EndGlobal

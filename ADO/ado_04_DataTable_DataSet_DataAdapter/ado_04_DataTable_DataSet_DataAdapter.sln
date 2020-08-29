@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ado_04_DataTable_DataSet_DataAdapter", "ado_04_DataTable_DataSet_DataAdapter\ado_04_DataTable_DataSet_DataAdapter.csproj", "{7D654D2F-7108-4E94-AC8B-2455E0C66217}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp", "WindowsFormsApp\WindowsFormsApp.csproj", "{F2311050-D70E-4D3D-8A96-57ED4E17275A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatatableFromDB", "DatatableFromDB\DatatableFromDB.csproj", "{D0F13427-456A-4994-9526-AE7F5B0DF752}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAdapter", "DataAdapter\DataAdapter.csproj", "{31750B4E-3A1C-4C56-9714-6A0C52308F18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsDataAdapter", "WindowsFormsDataAdapter\WindowsFormsDataAdapter.csproj", "{E1F93679-0683-4E2E-B387-8807FAA47F92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsForms_ImageInSql", "WindowsForms_ImageInSql\WindowsForms_ImageInSql.csproj", "{7015900E-CBB8-4B98-9147-94F3675CF854}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D654D2F-7108-4E94-AC8B-2455E0C66217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D654D2F-7108-4E94-AC8B-2455E0C66217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D654D2F-7108-4E94-AC8B-2455E0C66217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D654D2F-7108-4E94-AC8B-2455E0C66217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2311050-D70E-4D3D-8A96-57ED4E17275A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2311050-D70E-4D3D-8A96-57ED4E17275A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2311050-D70E-4D3D-8A96-57ED4E17275A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2311050-D70E-4D3D-8A96-57ED4E17275A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0F13427-456A-4994-9526-AE7F5B0DF752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0F13427-456A-4994-9526-AE7F5B0DF752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0F13427-456A-4994-9526-AE7F5B0DF752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0F13427-456A-4994-9526-AE7F5B0DF752}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31750B4E-3A1C-4C56-9714-6A0C52308F18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31750B4E-3A1C-4C56-9714-6A0C52308F18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31750B4E-3A1C-4C56-9714-6A0C52308F18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31750B4E-3A1C-4C56-9714-6A0C52308F18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1F93679-0683-4E2E-B387-8807FAA47F92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1F93679-0683-4E2E-B387-8807FAA47F92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1F93679-0683-4E2E-B387-8807FAA47F92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1F93679-0683-4E2E-B387-8807FAA47F92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7015900E-CBB8-4B98-9147-94F3675CF854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7015900E-CBB8-4B98-9147-94F3675CF854}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7015900E-CBB8-4B98-9147-94F3675CF854}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7015900E-CBB8-4B98-9147-94F3675CF854}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F2F0EEB5-1A36-4317-B1C1-B09D7DCA0622}
+	EndGlobalSection
+EndGlobal
