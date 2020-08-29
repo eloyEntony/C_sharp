@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsDataAdapter", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsForms_ImageInSql", "WindowsForms_ImageInSql\WindowsForms_ImageInSql.csproj", "{7015900E-CBB8-4B98-9147-94F3675CF854}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookDB_table", "BookDB_table\BookDB_table.csproj", "{7309FD2A-C253-4C52-BF45-7575BCAE420D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{7015900E-CBB8-4B98-9147-94F3675CF854}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7015900E-CBB8-4B98-9147-94F3675CF854}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7015900E-CBB8-4B98-9147-94F3675CF854}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7309FD2A-C253-4C52-BF45-7575BCAE420D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7309FD2A-C253-4C52-BF45-7575BCAE420D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7309FD2A-C253-4C52-BF45-7575BCAE420D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7309FD2A-C253-4C52-BF45-7575BCAE420D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

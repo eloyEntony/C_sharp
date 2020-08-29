@@ -27,12 +27,12 @@ namespace DatatableFromDB
             connection = new SqlConnection(connectS);
             table = new DataTable();
             set = new DataSet();
-            FillTabControl(set, connection);
-            tabControl1_SelectedIndexChanged(null, null);
             connection.Open();
+            FillTabControl(set);
+            tabControl1_SelectedIndexChanged(null, null);
 
         }
-        private void FillTabControl(DataSet set, SqlConnection connection)
+        private void FillTabControl(DataSet set)
         {
             try
             {
