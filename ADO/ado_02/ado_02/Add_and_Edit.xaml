@@ -5,29 +5,98 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ado_02"
         mc:Ignorable="d"
-        Title="Add_and_Edit" Height="247.094" Width="417.437">
+        Title="Add_and_Edit" Height="222.76" Width="315.77">
+    <Window.Resources>
+        <ControlTemplate TargetType="Button" x:Key="singUP">
+            <Border CornerRadius="20" Margin="0" Width="50" Height="50" BorderThickness="0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform Angle="90" CenterY="0.5" CenterX="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="#FF00379A" Offset="1"/>
+                        <GradientStop Color="#FF004EFF"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
+        <Style TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource singUP}"/>
+            <Setter Property="Foreground" Value="White"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border BorderThickness="0" CornerRadius="20" Background="Black" Height="50" Margin="0" Width="50">
+                                    <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border BorderThickness="0" CornerRadius="20" Background="LightSteelBlue" Height="50" Margin="0" Width="50">
+                                    <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <LinearGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                    <RotateTransform Angle="90" CenterY="0.5" CenterX="0.5"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </LinearGradientBrush.RelativeTransform>
+            <GradientStop Color="Black"/>
+            <GradientStop Color="#FF065DF9" Offset="1"/>
+            <GradientStop Color="#43cea2"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="73"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="70*"/>
         </Grid.RowDefinitions>
 
         <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" Content="Name: "/>
         <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" Content="Surname: "/>
         <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="2" Content="Group: "/>
 
-        <TextBox x:Name="tbName" VerticalContentAlignment="Center" Grid.Column="1" Height="30" Margin="40 0"/>
-        <TextBox x:Name="tbSurname" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="1" Height="30" Margin="40 0"/>
-        <ComboBox x:Name="cbGroup" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="2" Height="30" Margin="40 0" ItemsSource="{Binding groups}">
-            
-        </ComboBox>
-        
-        <Button Click="Save_Click" Content="Save" Grid.ColumnSpan="2" Grid.Row="3" Height="30" Margin="40 0"/>    
+        <TextBox x:Name="tbName" VerticalContentAlignment="Center" Grid.Column="1" Background="Transparent" Margin="10"/>
+        <TextBox x:Name="tbSurname" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="1" Background="Transparent" Margin="10"/>
+        <ComboBox x:Name="cbGroup" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="2" Margin="10" ItemsSource="{Binding groups}" Background="Transparent"/>
+
+        <Button Click="Save_Click" Content="Save" Grid.ColumnSpan="2" Grid.Row="3"/>
     </Grid>
 </Window>

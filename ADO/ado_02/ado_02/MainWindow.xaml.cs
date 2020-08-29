@@ -88,7 +88,7 @@ namespace ado_02
         }
 
         private void Update()
-        {
+        {            
             DbCommand command = factory.CreateCommand();
             command.CommandText = cmd;
             command.Connection = connection;
@@ -107,6 +107,20 @@ namespace ado_02
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             connection.Close();
+        }
+
+        private void LV_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (LV.SelectedIndex != -1)
+            {
+                btnDel.IsEnabled = true;
+                btnEdit.IsEnabled = true;
+            }
+            else
+            {
+                btnDel.IsEnabled = false;
+                btnEdit.IsEnabled = false;
+            }
         }
     }
 }
