@@ -1,0 +1,22 @@
+﻿<Window x:Class="EF_CodeFirst_WPF_Shop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EF_CodeFirst_WPF_Shop"
+        mc:Ignorable="d"
+        Title="Shop Database" Height="450" Width="512">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Products">
+                <DataGrid x:Name="DG_product"></DataGrid>                
+            </TabItem>
+            <TabItem Header="Orders">
+                <DataGrid x:Name="DG_orders"></DataGrid>
+            </TabItem>            
+            <TabItem Header="Clients">
+                <DataGrid x:Name="DG_clients"></DataGrid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CodeFirst_Shop.Entityses
+{
+    public class Manufacture
+    {
+        [Key]
+        public int ID { get; set; }
+        [Required]
+        public string Name { get; set; }
+        public string Phone { get; set; }
+
+        //nav
+        public virtual ICollection<Address> Addres { get; set; }
+    }
+}
