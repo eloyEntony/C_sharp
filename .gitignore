@@ -215,10 +215,18 @@
 /ADO/ado_06_EF/ModelFirst/obj/Debug
 /ADO/ado_06_EF/ModelFirst_Shop/bin/Debug
 /ADO/ado_06_EF/ModelFirst_Shop/obj/Debug
-
-
-
-
+/ADO/ado_07_Three-level_architecture/.vs
+/ADO/ado_07_Three-level_architecture/ado_07_Three-level_architecture/bin/Debug
+/ADO/ado_07_Three-level_architecture/ado_07_Three-level_architecture/obj/Debug
+/ADO/ado_07_Three-level_architecture/packages
+/ADO/ado_07_Three-level_architecture/BookLibrary.BLL/bin/Debug
+/ADO/ado_07_Three-level_architecture/BookLibrary.BLL/obj/Debug
+/ADO/ado_07_Three-level_architecture/BookLibrary.Client/bin/Debug
+/ADO/ado_07_Three-level_architecture/BookLibrary.Client/obj/Debug
+/ADO/ado_07_Three-level_architecture/Booklibrary.DAL/bin/Debug
+/ADO/ado_07_Three-level_architecture/Booklibrary.DAL/obj/Debug
+/ADO/ado_07_Three-level_architecture/BookLibraryClient/bin/Debug
+/ADO/ado_07_Three-level_architecture/BookLibraryClient/obj/Debug
 
 
 
