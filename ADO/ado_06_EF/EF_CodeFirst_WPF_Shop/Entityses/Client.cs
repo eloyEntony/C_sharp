@@ -13,7 +13,7 @@ namespace CodeFirst_Shop.Entityses
         public int ID { get; set; }
         [Required]
         public string Name { get; set; }
-
+        public string? Email { get; set; }
         //nav
         public virtual ICollection<Order> Order { get; set; }
     }

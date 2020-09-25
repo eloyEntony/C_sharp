@@ -18,6 +18,7 @@ namespace CodeFirst_Shop.Entityses
         [MaxLength(100)]
         public string Street { get; set; }
         public int? Builder { get; set; }
+        public string? Coment { get; set; }
 
         //nav
 

@@ -1,0 +1,112 @@
+﻿<Window x:Class="ado_07_University_three_level.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ado_07_University_three_level"
+        xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
+        mc:Ignorable="d"
+        Title="University" Height="430.089" Width="696">
+
+    <Window.Resources>
+        <FontFamily x:Key="FontAwesome">pack://application:,,,/Resources/#fontawesome</FontFamily>
+        <ControlTemplate TargetType="Button" x:Key="singUP">
+            <Border Margin="5" BorderThickness="0" Height="100" Width="100">
+                <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
+
+        <Style TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource singUP}"/>
+            <Setter Property="Foreground" Value="White"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="50" Background="Black" Margin="5" Height="100" Width="100">
+                                    <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="50" Background="Transparent" Margin="5" Height="100" Width="100">
+                                    <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                
+            </Style.Triggers>            
+        </Style>
+    </Window.Resources>  
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <DataGrid ItemsSource="{Binding}" Name="dgStudent" SelectionChanged="dgStudent_SelectionChanged" />
+        <!--<DataGrid Grid.Column="1" ItemsSource="{Binding}" Name="dgGroup" Margin="5"/>-->
+
+        <Grid Grid.Row="1" Background="#2e3439">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnCreate" Click="btnCreate_Click">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <fa:FontAwesome Icon="UserPlus" FontSize="35" Padding="5"/>
+                        <Label Foreground="White">ADD</Label>
+                    </StackPanel>
+                </Button>
+                <Button  x:Name="btnDelete"  Click="btnDelete_Click" IsEnabled="False">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <fa:FontAwesome Icon="UserTimes" FontSize="35" Padding="5"/>
+                        <Label Foreground="White">DELETE</Label>
+                    </StackPanel>
+                </Button>
+                <Button  x:Name="btnUpDate" Click="btnUpDate_Click" IsEnabled="False">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <fa:FontAwesome Icon="Edit" FontSize="35" Padding="5"/>
+                        <Label Foreground="White">EDIT</Label>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <Grid x:Name="dataGrid" Grid.Row="1" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel HorizontalAlignment="Center">
+                    <Label Content="NAME" Foreground="White" HorizontalContentAlignment="Center"/>
+                    <TextBox x:Name="tbName" Width="200" Height="20" Margin="10 0"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Label Content="SURNAME" Foreground="White" HorizontalContentAlignment="Center"/>
+                    <TextBox x:Name="tbSurname" Width="200" Height="20" Margin="10 0"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <Label Content="GROUP" Foreground="White" HorizontalContentAlignment="Center"/>
+                    <ComboBox x:Name="cbGroup" Width="200" Height="20" Margin="10 0"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

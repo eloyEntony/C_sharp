@@ -1,0 +1,29 @@
+﻿<Window x:Class="Start_or_Stop_my_programs.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Start_or_Stop_my_programs"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="232.544" Width="555.7" Background="#2F9599">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="16*"/>
+            <RowDefinition Height="85*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="40*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Stop" HorizontalAlignment="Center" Margin="47,0" Width="34" />
+        <ListBox Margin="5" Grid.Row="1" Name="lbStop" Background="Transparent" BorderBrush="#EC2049"/>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" Height="70" Grid.RowSpan="2">
+            <Button Click="Button_Start" Height="25" Content="Start" Margin="5" Background="Transparent" BorderBrush="#EC2049"/>
+            <Button Click="Button_Stop" Height="25" Content="Stop" Margin="5" Background="Transparent" BorderBrush="#EC2049"/>
+        </StackPanel>
+        <Label Grid.Column="2" Content="Running" HorizontalAlignment="Center" Margin="36,0,37,0" Width="54" />
+        <ListBox x:Name="lbRun" Grid.Column="2" Margin="5" Grid.Row="1" Background="Transparent" BorderBrush="#EC2049"/>
+    </Grid>
+</Window>

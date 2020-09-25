@@ -16,10 +16,12 @@ namespace CodeFirst_Shop.Entityses
         public double Price { get; set; }
         [MaxLength(300)]
         public string Description { get; set; }
-
+        public bool? IsLegal { get; set; }
+        public DateTime? OverDate { get; set; }
         //nav
         public int? Category_ID { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Manufacture> Manufactures { get; set; }
     }
 }

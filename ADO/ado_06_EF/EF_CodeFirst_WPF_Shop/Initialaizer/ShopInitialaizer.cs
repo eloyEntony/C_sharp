@@ -25,12 +25,12 @@ namespace CodeFirst_Shop.Initialaizer
 
             var products = new List<Product>
             {
-                new Product { Name = "Laptop", Price = 3000, Description ="", Category_ID = context.Categories.FirstOrDefault(x=>x.ID ==3).ID},
-                new Product { Name = "Dell", Price = 5000, Description ="", Category_ID = context.Categories.FirstOrDefault(x=>x.ID ==1).ID},
-                new Product { Name = "iMac", Price = 10000, Description ="", Category_ID = context.Categories.FirstOrDefault(x=>x.ID ==1).ID},
-                new Product { Name = "iPhone", Price = 9000, Description ="", Category_ID = context.Categories.FirstOrDefault(x=>x.ID ==2).ID},
-                new Product { Name = "Samsung", Price = 8000, Description ="", Category_ID = context.Categories.FirstOrDefault(x=>x.ID ==2).ID},
-                new Product { Name = "Toshiba", Price = 3000, Description ="", Category_ID = context.Categories.FirstOrDefault(x=>x.ID ==4).ID},
+                new Product { Name = "Laptop", Price = 3000, Description ="", Category_ID = context.Categories.FirstOrDefault(x=>x.ID ==3).ID , IsLegal =true},
+                new Product { Name = "Dell", Price = 5000, Description ="", Category_ID = context.Categories.FirstOrDefault(x=>x.ID ==1).ID, IsLegal = false},
+                new Product { Name = "iMac", Price = 10000, Description ="", Category_ID = context.Categories.FirstOrDefault(x=>x.ID ==1).ID, IsLegal = true},
+                new Product { Name = "iPhone", Price = 9000, Description ="", Category_ID = context.Categories.FirstOrDefault(x=>x.ID ==2).ID, IsLegal = false},
+                new Product { Name = "Samsung", Price = 8000, Description ="", Category_ID = context.Categories.FirstOrDefault(x=>x.ID ==2).ID, IsLegal = true},
+                new Product { Name = "Toshiba", Price = 3000, Description ="", Category_ID = context.Categories.FirstOrDefault(x=>x.ID ==4).ID, IsLegal = false},
             };
             context.Products.AddRange(products);
             context.SaveChanges();
@@ -53,24 +53,24 @@ namespace CodeFirst_Shop.Initialaizer
             };
             var adresApple = new List<Address>
             {
-                new Address{ Country = "Poland", City = "Warhava", Street = "Main", Builder = 33},
-                new Address{ Country = "China", City = "HongKong", Street = "Main", Builder = 1},
+                new Address{ Country = "Poland", City = "Warhava", Street = "Main", Builder = 33, Coment = ""},
+                new Address{ Country = "China", City = "HongKong", Street = "Main", Builder = 1, Coment = ""},
             };
             var adresNokia = new List<Address>
             {
-                new Address{ Country = "Italy", City = "Milan", Street = "Main", Builder = 951},
+                new Address{ Country = "Italy", City = "Milan", Street = "Main", Builder = 951, Coment = ""},
             };
             var adressOrder = new List<Address>
             {
-                new Address { Country = "Ukraine", City = "Rivne", Street = "Soborna", Builder = 3 },
-                new Address { Country = "Ukraine", City = "Rivne", Street = "Soborna", Builder = 102 },
-                new Address { Country = "Ukraine", City = "Kyiv", Street = "Hrechatuk", Builder = 1 },
+                new Address { Country = "Ukraine", City = "Rivne", Street = "Soborna", Builder = 3 , Coment = "Hey"},
+                new Address { Country = "Ukraine", City = "Rivne", Street = "Soborna", Builder = 102},
+                new Address { Country = "Ukraine", City = "Kyiv", Street = "Hrechatuk", Builder = 1 , Coment = "Hello"},
                 new Address { Country = "Ukraine", City = "Kyiv", Street = "Hrechatuk", Builder = 6 },
                 new Address { Country = "Ukraine", City = "Lviv", Street = "Kotova", Builder = 55 },
                 new Address { Country = "Ukraine", City = "Odessa", Street = "Lubava", Builder = 97 },
-                new Address { Country = "Ukraine", City = "Odessa", Street = "Lubava", Builder = 100 },
-                new Address { Country = "Ukraine", City = "Odessa", Street = "Lubava", Builder = 101 },
-                new Address { Country = "Ukraine", City = "Odessa", Street = "Lubava", Builder = 102 },
+                new Address { Country = "Ukraine", City = "Odessa", Street = "Lubava", Builder = 100 , Coment = "Bob"},
+                new Address { Country = "Ukraine", City = "Odessa", Street = "Lubava", Builder = 101},
+                new Address { Country = "Ukraine", City = "Odessa", Street = "Lubava", Builder = 102},
             };
             context.Addresses.AddRange(adressOrder);
             context.SaveChanges();
@@ -127,14 +127,21 @@ namespace CodeFirst_Shop.Initialaizer
             var prod5 = context.Products.FirstOrDefault(x => x.Name == "Samsung");      prod5.Orders = context.Orders.Where(x => x.Products.FirstOrDefault(y => y.Name == "Samsung").Name == "Samsung").ToList();
             var prod6 = context.Products.FirstOrDefault(x => x.Name == "Toshiba");      prod6.Orders = context.Orders.Where(x => x.Products.FirstOrDefault(y => y.Name == "Toshiba").Name == "Toshiba").ToList();
 
+            prod1.Manufactures = context.Manufactures.Where(x => (x.ID == 1) && (x.ID == 2)).ToList();
+            prod2.Manufactures = context.Manufactures.Where(x => x.ID == 1).ToList();
+            prod3.Manufactures = context.Manufactures.Where(x => (x.ID == 3) && (x.ID == 2)).ToList();
+            prod4.Manufactures = context.Manufactures.Where(x => (x.ID == 1) && (x.ID == 4)).ToList();
+            prod5.Manufactures = context.Manufactures.Where(x => x.ID == 2).ToList();
+            prod6.Manufactures = context.Manufactures.Where(x => (x.ID == 4) && (x.ID == 2)).ToList();
+
             context.SaveChanges();
 
             var clients = new List<Client>
             {
-                new Client{ Name = "Bob", Order = order1},
-                new Client{ Name = "Mack", Order = order2},
-                new Client{ Name = "Max", Order = order3},
-                new Client{ Name = "Luck", Order = order4},
+                new Client{ Name = "Bob", Order = order1, Email = "fasdfa@bxc.vsd"},
+                new Client{ Name = "Mack", Order = order2, Email = "NTGREczx@vd.ds"},
+                new Client{ Name = "Max", Order = order3, Email = "fdtnbc@gb.vxx"},
+                new Client{ Name = "Luck", Order = order4, Email = "hgtfr@gg.vvp"},
             };
 
             context.Clients.AddRange(clients);
