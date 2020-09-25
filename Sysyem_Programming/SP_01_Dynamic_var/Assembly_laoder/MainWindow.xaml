@@ -1,0 +1,34 @@
+﻿<Window x:Class="Assembly_laoder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Assembly_laoder"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="504">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="61*"/>
+            <RowDefinition Height="146*"/>
+            <RowDefinition Height="212*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Load assembly" Margin="10,12,10,11" Click="Button_Click"/>
+        <ListBox x:Name="lbDLL" Grid.Row="1" Margin="10" Grid.RowSpan="2" SelectionChanged="lbDLL_SelectionChanged"/>
+        <ListBox x:Name="lbMetod" Grid.Column="1" Grid.RowSpan="2" Margin="10" SelectionChanged="lbMetod_SelectionChanged"  />
+        <StackPanel Grid.Row="3" Grid.Column="1" Visibility="Hidden" Name="stMetod">
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="tb1" Margin="5" Width="35"/>
+                <Label Content="+" />
+                <TextBox Name="tb2" Margin="5" Width="35"/>
+                <Label  Content="="/>
+                <Label x:Name="lbRes"/>
+            </StackPanel>            
+            <Button x:Name="tbRes"  Content="RES" Margin="5" Click="tbRes_Click"/>
+        </StackPanel>
+        
+    </Grid>
+</Window>
