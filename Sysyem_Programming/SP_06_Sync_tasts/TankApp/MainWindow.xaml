@@ -1,0 +1,36 @@
+﻿<Window x:Class="TankApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TankApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="311.558" Width="622.993">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="129*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="178*"/>
+            <ColumnDefinition Width="437*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="i1" Grid.Column="0" Margin="10 0"/>
+            <Image x:Name="i2" Grid.Column="1" Margin="10 0"/>
+        </Grid>
+        <ProgressBar Grid.Row="1" Name="progess" Margin="5,1" Minimum="0" Maximum="99" Grid.ColumnSpan="2"/>
+        <ListBox x:Name="lb" Grid.Row="2" Margin="5"/>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <Label  Name="lbWiner" Height="50" FontSize="20"/>
+            <Image x:Name="imgWiner"/>
+        </StackPanel>        
+    </Grid>
+</Window>

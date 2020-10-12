@@ -1,0 +1,74 @@
+﻿<Window x:Class="Client_MiniChat.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client_MiniChat"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="453.55" Width="366.864">
+    <Grid>
+        <TabControl x:Name="Tabs">
+
+            <TabItem Header="Man - Man" Tag="1">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label Content="IP" VerticalContentAlignment="Center" />
+                        <TextBox x:Name="tbIP" Margin="-1 10 10 10" Width="105"/>
+                        <Label Content="Port" VerticalContentAlignment="Center"/>
+                        <TextBox x:Name="tbPort" Margin="-1 10 30 10" Width="60"/>
+                        <Button Height="20" Width="80" Content="Connect" Click="Button_Connect_click"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Enter masseage :" Margin="6 5 10 -10"/>
+                        <TextBox x:Name="tbMsg" Margin="10"/>
+                        <Button x:Name="btnSend" Content="Send" Height="20" Width="100" Click="btnSend_Click"/>
+                    </StackPanel>
+                    <ListBox Margin="10" MaxHeight="250" MinHeight="250" Name="lbChat"/>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Man - Comp">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label Content="IP" VerticalContentAlignment="Center" />
+                        <TextBox Margin="-1 10 10 10" Width="105"/>
+                        <Label Content="Port" VerticalContentAlignment="Center"/>
+                        <TextBox Margin="-1 10 30 10" Width="60"/>
+                        <Button Height="20" Width="80" Content="Connect"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Enter masseage :" Margin="6 5 10 -10"/>
+                        <TextBox Margin="10"/>
+                        <Button Content="Send" Height="20" Width="100" />
+                    </StackPanel>
+                    <ListBox Margin="10" MaxHeight="250" MinHeight="250"/>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Comp - Man">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label Content="IP" VerticalContentAlignment="Center" />
+                        <TextBox Margin="-1 10 10 10" Width="105"/>
+                        <Label Content="Port" VerticalContentAlignment="Center"/>
+                        <TextBox Margin="-1 10 30 10" Width="60"/>
+                        <Button Height="20" Width="80" Content="Connect"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Enter masseage :" Margin="6 5 10 -10"/>
+                        <TextBox Margin="10"/>
+                        <Button Content="Send" Height="20" Width="100" />
+                    </StackPanel>
+                    <ListBox Margin="10" MaxHeight="250" MinHeight="250"/>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Comp - Comp">
+                <StackPanel>
+                    <ListBox Margin="10" MaxHeight="250" MinHeight="250"/>
+                </StackPanel>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>
