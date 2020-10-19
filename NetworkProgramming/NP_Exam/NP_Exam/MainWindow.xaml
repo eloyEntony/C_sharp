@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NP_Exam"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="675.5">
+        Title="MainWindow" Height="450" Width="675.5"
+        Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

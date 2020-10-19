@@ -1,5 +1,7 @@
 ﻿using NP_Exam.Entityes;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -32,22 +34,38 @@ namespace NP_Exam
 
             lbUserName.Content = tbLogin.Text;
 
-            DataForCurrentUser();   
+            Task.Run(() => DataForCurrentUser());
 
             client.Connect(tbLogin.Text);
         }
 
+        
         private void DataForCurrentUser()
         {
-            var currentUser = contex.Users.FirstOrDefault(x => x.Login == tbLogin.Text);
-            var contactList = contex.Users.Where(x => x.Login != tbLogin.Text).ToList();
+            string login="";
+            this.Dispatcher.BeginInvoke((Action)delegate { login = tbLogin.Text; });
+
+            var currentUser = contex.Users.FirstOrDefault(x => x.Login == login);
+            var contactList = contex.Users.Where(x => x.Login != login).ToList();
             var chatList = contex.Chats.Where(x => (x.FirstUserId == currentUser.Id) || (x.SecondUserId == currentUser.Id));
 
             foreach (var item in chatList)
-                lbChats.Items.Add(item.FirstUser.Login + " - " + item.SecondUser.Login);
+            {
+                this.Dispatcher.Invoke(() =>                 
+                {
+                    lbChats.Items.Add(item.FirstUser.Login + " - " + item.SecondUser.Login);
+                });
+            }               
+                
 
             foreach (var item in contactList)
-                lbContacts.Items.Add(item.Login);
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    lbContacts.Items.Add(item.Login);
+                });
+            }
+            
         }
         private void ChangeVisible()
         {
@@ -99,5 +117,10 @@ namespace NP_Exam
             }
             catch { }
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            client.Disconnect();
+        }       
     }
 }

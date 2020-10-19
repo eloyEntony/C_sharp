@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Media.Media3D;
-using System.Windows.Threading;
 
 namespace NP_Exam
 {
@@ -17,8 +10,9 @@ namespace NP_Exam
     {
         private IPAddress _ipAddress;
         private ushort _port;
-        TcpClient client;
-        NetworkStream stream;
+        public TcpClient client { get; private set; }
+        public Thread thread { get; private set; }
+        public NetworkStream stream { get; private set; }
         public static MainWindow _Instance { get; private set; }
 
         public Client(MainWindow Instance)
@@ -35,11 +29,14 @@ namespace NP_Exam
             {
                 client.Connect(_ipAddress, _port);
                 stream = client.GetStream();
-                Thread thread = new Thread(x => this.ReceiveData((TcpClient)x));
+                thread = new Thread(x => this.ReceiveData((TcpClient)x));
                 thread.Start(client);
                 this.SendMessageTo(userLogin);
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
         public void ReceiveData(TcpClient client)
         {
@@ -63,9 +60,25 @@ namespace NP_Exam
         }
 
         public void SendMessageTo(/*string user,*/ string msg)
-        {    
+        {
             byte[] data = Encoding.UTF8.GetBytes(msg);
             stream.Write(data, 0, data.Length);
+        }
+        public void Disconnect()
+        {
+            SendMessageTo("exit");
+            if (stream != null)
+            {
+                stream.Close();//отключение потока
+                stream.Dispose();
+            }
+            if (client != null)
+            {
+                client.Close();//отключение клиента
+                client.Dispose();
+            }
+            Environment.Exit(0); //завершение процесса.
+            thread.Abort();
         }
     }
 }

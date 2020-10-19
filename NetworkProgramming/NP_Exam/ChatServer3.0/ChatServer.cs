@@ -16,7 +16,7 @@ namespace ChatServer3._0
         public string Username { get; private set; }
 
         static TcpListener tcpListener;
-        List<Client> clients = new List<Client>();
+        List<ClientServer> clients = new List<ClientServer>();
 
         private int clientIdCounter;
         private Thread thread;
@@ -41,16 +41,20 @@ namespace ChatServer3._0
                 while (true)
                 {
                     TcpClient tcp = tcpListener.AcceptTcpClient();
-                    Client client = new Client(tcp, this);
+                    ClientServer client = new ClientServer(tcp, this);
                     Thread thread = new Thread(new ThreadStart(client.Process));
                     thread.Start();
                 }
 
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }            
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+                Disconnect();
+            }            
         }
 
-       public void AddConnect(Client client)
+       public void AddConnect(ClientServer client)
        {
             clients.Add(client);
        }
@@ -65,11 +69,11 @@ namespace ChatServer3._0
             }
         }
 
-        public void SendMessage(Client from, string toUsername, string messageContent)
+        public void SendMessage(ClientServer from, string toUsername, string messageContent)
         {
             string message = from.Username + ": " + messageContent;
 
-            foreach (Client c in clients)            
+            foreach (ClientServer c in clients)            
                 if (c.Username == toUsername)                
                     c.SendMessage(message); 
         }
@@ -80,6 +84,15 @@ namespace ChatServer3._0
                 clients[i].Close();
             
             Environment.Exit(0);
+        }
+
+        public void RemoveConnection(string id)
+        {
+            // получаем по id закрытое подключение
+            ClientServer client = clients.FirstOrDefault(c => c.Id == id);
+            // и удаляем его из списка подключений
+            if (client != null)
+                clients.Remove(client);
         }
     }
 }
