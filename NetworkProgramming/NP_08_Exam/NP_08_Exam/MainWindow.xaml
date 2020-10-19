@@ -1,0 +1,48 @@
+﻿<Window x:Class="NP_08_Exam.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NP_08_Exam"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="495" Width="408.215">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" Name="spLogin" Visibility="Visible">
+            <StackPanel>
+                <Label Content="Login" HorizontalAlignment="Center"/>
+                <TextBox Width="150" Name="tbLogin" Margin="5"/>
+                <Label Content="Password" HorizontalAlignment="Center"/>
+                <TextBox Width="150" Name="tbPass" Margin="5"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <Button Content="Login" Width="100" Margin="10" x:Name="btnLogin" Click="btnLogin_Click"/>
+                    <Button Content="Register" Width="100" Margin="10" x:Name="btnReg" Click="btnReg_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel x:Name="userAccount" Margin="10" Visibility="Collapsed">
+            <Label x:Name="lbUserName" Content="...user..."/>
+            <StackPanel>
+                <Label Content="Chats"/>
+                <ListBox x:Name="lbChats" MaxHeight="250" MinHeight="150"/>
+            </StackPanel>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel  Margin="0 10">
+                    <Label Content="Contacts"/>
+                    <ListBox Height="200" x:Name="lbContacts"/>                    
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Margin="0 30">
+                    <Button x:Name="btnNewChat" Content="New chat" Margin="10"/>
+                    <Button x:Name="btnDeleteChat" Content="Delete chat" Margin="10"/>                    
+                </StackPanel>
+                
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
