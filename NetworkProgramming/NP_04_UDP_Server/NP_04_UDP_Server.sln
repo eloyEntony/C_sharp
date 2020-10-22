@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileTransfer_client", "File
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDP_skreen", "UDP_skreen\UDP_skreen.csproj", "{345B9F51-9E07-4F42-A5DD-354FD5CDC31B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDP_skreen_client", "UDP_skreen_client\UDP_skreen_client.csproj", "{1CB230D5-46E2-4468-97A1-4652338930ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{345B9F51-9E07-4F42-A5DD-354FD5CDC31B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{345B9F51-9E07-4F42-A5DD-354FD5CDC31B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{345B9F51-9E07-4F42-A5DD-354FD5CDC31B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CB230D5-46E2-4468-97A1-4652338930ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CB230D5-46E2-4468-97A1-4652338930ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CB230D5-46E2-4468-97A1-4652338930ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CB230D5-46E2-4468-97A1-4652338930ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

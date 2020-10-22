@@ -9,6 +9,17 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Server.DataBase;
+
+//клієнт - серверний додаток
+
+//1) клієнт посилає серверу запити з індексом міста
+//сервер ПЕРЕВІРЯЄ по базі даних, і відправляє у відповідь назву міста
+
+//2) клієнт посилає серверу запити з назвою міста
+//сервер ПЕРЕВІРЯЄ по базі даних, і відправляє у відповідь масив індексів
+
+//сервер асинхронний. клієнт - вікно. БД - ENTITY FRAMEWORK
+
 namespace Server
 {
     struct TransferData
@@ -29,8 +40,6 @@ namespace Server
         {
             Console.Title = "Server";
             context = new DataBase.AppContext();
-            //int f = int.Parse(res);
-            string tmp = context.Cities.FirstOrDefault(x => x.ID == 1).Name;
             StartServer();
         }
 
@@ -68,7 +77,7 @@ namespace Server
             client.BeginReceive(data.Buffer, 0, TransferData.size, SocketFlags.None, ReceiveCallback, data);
         }
 
-        static string res ="";
+        static string res = "";
         private static void ReceiveCallback(IAsyncResult ar)
         {
             var data = (TransferData)ar.AsyncState;
@@ -76,19 +85,52 @@ namespace Server
             var client = data.Socket;
             int countBytes = client.EndReceive(ar);
 
-            res = Encoding.UTF8.GetString(data.Buffer, 0, countBytes);            
+            res = Encoding.UTF8.GetString(data.Buffer, 0, countBytes);
 
             Console.WriteLine("Got : {0} bytes : From client >> {1} ", res, client.RemoteEndPoint);
 
-            Send(client);
+            if (int.TryParse(res, out int n))
+                SendName(client);
+            else
+                SendId(client);
         }
 
-        private static void Send(Socket client)
+        private static void SendId(Socket client)
         {
-            int id = int.Parse(res);
-            string cityName = context.Cities.FirstOrDefault(x => x.ID == id).Name;
+            string tmp = "";
+            try
+            {
+                string cityName = res;
+                var ids = context.Cities.Where(x => x.Name == cityName).Select(x => x.ID);
+                foreach (var item in ids)
+                    tmp += item + ", ";
+            }
+            catch { }
+            byte[] responce;
 
-            byte[] responce = Encoding.UTF8.GetBytes("City name >>> " + cityName);
+            if (string.IsNullOrEmpty(tmp))
+                responce = Encoding.UTF8.GetBytes("There is no such city");
+            else
+                responce = Encoding.UTF8.GetBytes("City ID >>> " + tmp);
+
+            client.BeginSend(responce, 0, responce.Length, SocketFlags.None, SendCallback, client);
+        }
+
+        private static void SendName(Socket client)
+        {
+            byte[] responce; string cityName = "";
+            try
+            {
+                int id = int.Parse(res);
+                cityName = context.Cities.FirstOrDefault(x => x.ID == id).Name;
+            }
+            catch { }
+
+
+            if (string.IsNullOrEmpty(cityName))
+                responce = Encoding.UTF8.GetBytes("There is no such city");
+            else
+                responce = Encoding.UTF8.GetBytes("City name >>> " + cityName);
             client.BeginSend(responce, 0, responce.Length, SocketFlags.None, SendCallback, client);
         }
 

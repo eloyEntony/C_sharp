@@ -13,7 +13,7 @@ namespace FileTransfer
     class Program
     {
         const int port = 2020;
-            const string ip = "92.52.138.128";
+            const string ip = "127.0.0.1";
         static UdpClient server = new UdpClient();
         static void Main(string[] args)
         {
