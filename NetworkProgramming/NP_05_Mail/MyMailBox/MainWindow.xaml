@@ -3,47 +3,43 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MyMailBox"
+        xmlns:local="clr-namespace:MyMailBox"       
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MailBOX" Height="450" Width="800">
     <Grid>
         <StackPanel x:Name="spLog" VerticalAlignment="Center" Visibility="Visible">
             <Label Content="Login" HorizontalAlignment="Center"/>
-            <TextBox Width="200" Name="tbLogin"/>
+            <TextBox Width="200" Name="tbLogin" Text="projectsprog1@gmail.com"/>
             <Label Content="Password" HorizontalAlignment="Center"/>
-            <TextBox Width="200" Name="tbPass"/>
+            <TextBox Width="200" Name="tbPass" Text="qqwwee11!!"/>
             <Button Width="100" Height="20" Margin="20" Content="Sing In" Click="btnLogin_Click" Name="btnLogin"/>
         </StackPanel>
-        <Grid x:Name="gridMainPage" Margin="10" Visibility="Visible">
+        
+        <Grid x:Name="gridMainPage" Margin="10" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40*"/>
-                <RowDefinition Height="369*"/>
+                <RowDefinition Height="340*"/>
+                <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" HorizontalAlignment="Left" Orientation="Horizontal">
                 <Label Content=".......@mail.com" VerticalAlignment="Center" Name="lbMail"/>
-                <Button Content="Refresh" Width="100" Margin="10"/>
+                <Button Content="Refresh" Width="100" Margin="10" Click="Button_Click_1"/>
                 <Button Content="New" Width="100" Margin="10" Click="Button_Click"/>
+                
             </StackPanel>
-            <ListBox x:Name="mailBox" Grid.Row="1" Margin="5"/>
+            <!--<ListBox x:Name="mailBox" Grid.Row="1" Margin="5"/>-->
             
-            <ListBox ItemsSource="{Binding DataSource}" Grid.IsSharedSizeScope="True" Grid.Row="1">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="Column1"/>
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="Column2"/>
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="Column3"/>
-                            </Grid.ColumnDefinitions>
-                            <!-- Assumes MVVM and you wish to bind to properties and commands -->
-                            <TextBlock Grid.Column="0" Text="{Binding ColumnOneText}"/>
-                            <TextBlock Grid.Column="1" Text="{Binding ColumnTwoText}"/>
-                            <TextBlock Grid.Column="2" Text="{Binding ColumnThreeText}"/>
-                            <Button Content="ClickMe" Command="{Binding ButtonExecutionCommand}"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <ListView Grid.IsSharedSizeScope="True" Grid.Row="1" x:Name="mailBox" MouseDoubleClick="mailBox_MouseDoubleClick">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Sender}">From</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Subject}">Theme</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Date}">Date</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ProgressBar x:Name="progress" Height="5" Grid.Row="2"/>
+
         </Grid>
     </Grid>
 </Window>

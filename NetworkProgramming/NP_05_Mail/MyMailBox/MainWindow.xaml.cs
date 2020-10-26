@@ -1,20 +1,12 @@
 ﻿using MailKit;
 using MailKit.Net.Imap;
-using System;
-using System.Collections.Generic;
+using MyMailBox.Model;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Net.Mail;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MyMailBox
 {
@@ -23,47 +15,93 @@ namespace MyMailBox
     /// </summary>
     public partial class MainWindow : Window
     {
-        ImapClient imap;
-        SmtpClient smtp;
+        public static string login { get; set; } = "projectsprog1@gmail.com";
+        public static string pass { get; set; } = "qqwwee11!!";
+        static ImapClient imap = new ImapClient();
+        ObservableCollection<Letter> letters = new ObservableCollection<Letter>();
+
         public MainWindow()
         {
             InitializeComponent();
+            mailBox.ItemsSource = letters;
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            using (imap = new ImapClient())
-            {
-                imap.Connect("imap.gmail.com", 993, true);
-                imap.Authenticate("projectsprog1@gmail.com", "qqwwee11!!");
-
-                if (imap.IsAuthenticated)
-                {
-                    spLog.Visibility = Visibility.Collapsed;
-                    gridMainPage.Visibility = Visibility.Visible;
-                    Update(imap);
-                }
-            }
+            Update();
         }
 
-        private void Update(ImapClient imap)
+        private static async Task<IMailFolder> EmailAsync(string login, string pass)
         {
+            await imap.ConnectAsync("imap.gmail.com", 993, true);
+            await imap.AuthenticateAsync(login, pass);
+
+            if (imap.IsAuthenticated)
+            {                
+                var inbox = imap.Inbox;
+                return inbox;
+            }
+            return null;
+        }
+
+        private async void Update()
+        {
+            IMailFolder inbo = await Task.Run(() => EmailAsync(login, pass));
             lbMail.Content = tbLogin.Text;
 
-            var inbox = imap.Inbox;
-            inbox.Open(FolderAccess.ReadOnly);
+            inbo.Open(FolderAccess.ReadOnly);
+            progress.Maximum = inbo.Count;
+            lbMail.Content = login;
+            spLog.Visibility = Visibility.Collapsed;
+            gridMainPage.Visibility = Visibility.Visible;
 
-            for (int i = inbox.Count-1; i >= 0; i--)
+            try
             {
-                var message = inbox.GetMessage(i);
-                mailBox.Items.Add($" Sender : {message.From.Mailboxes.First().Name, -10} \t\tSebject : {message.Subject, -50} \t\tDate: {message.Date.DateTime}");
+                for (int i = inbo.Count - 1; i >= 0; i--)
+                {
+                    var message = await inbo.GetMessageAsync(i);
+                    letters.Add(new Letter
+                        {
+                            Sender = message.From.Mailboxes.First().Name,
+                            Date = message.Date.DateTime.ToString(),
+                            Subject = message.Subject,
+                            Text = message.TextBody
+                        }
+                    );
+                    progress.Value++;
+                }
             }
+            catch { }
+            await imap.DisconnectAsync(true);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SendMail sendMail = new SendMail();
+            SendMail sendMail = new SendMail(login);
+            sendMail.pass = pass;
             sendMail.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            letters.Clear();
+            Update();
+        }
+
+        private void mailBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var viewItem = sender as ListView;
+            if ((sender as ListView).SelectedIndex != -1)
+            {
+                SendMail sendMail = new SendMail(login);
+                sendMail.btnSend.Visibility = Visibility.Hidden;
+                sendMail.btnAttach.Visibility = Visibility.Hidden;
+                sendMail.tbTo.Text = letters[viewItem.SelectedIndex].Sender;
+                sendMail.tbFrom.Text = letters[viewItem.SelectedIndex].Date.ToString();
+                sendMail.tbMessage.Text = letters[viewItem.SelectedIndex].Text;
+                sendMail.tbSubject.Text = letters[viewItem.SelectedIndex].Subject;
+                sendMail.Show();
+            }
         }
     }
 }

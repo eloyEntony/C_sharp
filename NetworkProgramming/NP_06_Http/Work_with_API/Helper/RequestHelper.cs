@@ -12,7 +12,7 @@ namespace Work_with_API.Helper
     {
         public const string url = "http://hp-api.herokuapp.com/api/characters/students";
 
-        public static async Task<List<Student>> GetStudents(string query)
+        public static async Task<List<Student>> GetStudents()
         {
             List<Student> students = new List<Student>();
 
@@ -23,6 +23,11 @@ namespace Work_with_API.Helper
                 students = JsonConvert.DeserializeObject<List<Student>>(json);
             }
             return students;
+        }
+        public static async Task<byte[]> GetPhoto(Student currentSelection)
+        {
+            HttpClient client = new HttpClient();
+            return await client.GetByteArrayAsync(currentSelection.image);
         }
     }
 }

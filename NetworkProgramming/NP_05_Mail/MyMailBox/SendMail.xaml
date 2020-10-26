@@ -26,6 +26,6 @@
         </Grid>
         <TextBox x:Name="tbMessage" Height="250" Margin="10" TextWrapping="Wrap" AcceptsReturn="True"/>
         <Button x:Name="btnAttach" Content="Add file" Width="100" HorizontalAlignment="Left" Margin="10 0"/>
-        <Button Content="Send" Margin="10 0" HorizontalAlignment="Right" Width="100"/>
+        <Button Content="Send" Margin="10 0" HorizontalAlignment="Right" Width="100" Click="Button_Click" Name="btnSend"/>
     </StackPanel>
 </Window>

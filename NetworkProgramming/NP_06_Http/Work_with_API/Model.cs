@@ -18,7 +18,7 @@ namespace Work_with_API
         public string gender { get; set; }
         public string house { get; set; }
         public string dateOfBirth { get; set; }
-        public object yearOfBirth { get; set; }
+        public int? yearOfBirth { get; set; }
         public string ancestry { get; set; }
         public string eyeColour { get; set; }
         public string hairColour { get; set; }
@@ -35,7 +35,7 @@ namespace Work_with_API
     {
         public string wood { get; set; }
         public string core { get; set; }
-        public object length { get; set; }
+        public double? length { get; set; }
     }
 
 
